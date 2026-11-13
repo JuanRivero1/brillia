@@ -1,0 +1,9 @@
+{
+  "name": "Brillia · Limpieza profesional",
+  "short_name": "Brillia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0ea5a4",
+  "icons": [{ "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
