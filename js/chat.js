@@ -42,10 +42,13 @@
       const metros = Math.min(400, Math.max(30, Number(m2[1])));
       const tipo = /oficin|despach|local|negocio/.test(q) ? "oficina" : /obra|reforma/.test(q) ? "obra" : /fondo|profund/.test(q) ? "profunda" : "hogar";
       const frecuencia = /seman/.test(q) ? "semanal" : /quincen|dos semanas/.test(q) ? "quincenal" : /mensual|cada mes/.test(q) ? "mensual" : "unica";
-      const p = window.calcularPresupuesto({ tipo, m2: metros, frecuencia, extras: [] });
-      const h = String(Math.round(p.horas * 2) / 2).replace(".5", ",5");
+      const dorm = q.match(/(\d)\s*(dormitorio|habitacion|despacho|estancia|sala)/);
+      const ban = q.match(/(\d)\s*(bano|aseo|wc)/);
+      const estancias = dorm ? Number(dorm[1]) : 2, banos = ban ? Number(ban[1]) : 1;
+      const p = window.calcularPresupuesto({ tipo, m2: metros, estancias, banos, frecuencia, extras: [] });
+      const h = String(p.horas).replace(".5", ",5");
       return {
-        texto: `Para ${p.nombre.toLowerCase()} de ${metros} m² ${D.nombresFrecuencia[frecuencia] === "una vez" ? "" : D.nombresFrecuencia[frecuencia] + " "}te sale en <strong>${eur(p.total)} €</strong> (IVA incluido), unas ${h} h con ${p.equipo === 1 ? "una profesional" : p.equipo + " profesionales"}.${p.ahorro ? ` Ya incluye el descuento del ${Math.round(p.descuento * 100)} %.` : " Si es recurrente, tienes hasta un 15 % de descuento."}\n\nPuedes afinarlo con extras en la [calculadora](#presupuesto) o [reservarlo ya](#reservar).`,
+        texto: `Para ${p.nombre.toLowerCase()} de ${metros} m² con ${estancias} ${estancias === 1 ? "dormitorio" : "dormitorios"} y ${banos} ${banos === 1 ? "baño" : "baños"}${D.nombresFrecuencia[frecuencia] === "una vez" ? "" : ", " + D.nombresFrecuencia[frecuencia] + ","} calculo <strong>${h} h de trabajo</strong> y un precio de <strong>${eur(p.total)} €</strong> (IVA incluido, ${p.eurM2.toFixed(2).replace(".", ",")} €/m²), con ${p.equipo === 1 ? "una profesional" : p.equipo + " profesionales"}.${dorm && ban ? "" : " Si me dices dormitorios y baños exactos, afino las horas."}${p.ahorro ? ` Ya incluye el descuento del ${Math.round(p.descuento * 100)} %.` : " Si es recurrente, tienes hasta un 15 % de descuento."}\n\nPuedes afinarlo con extras en la [calculadora](#presupuesto) o [reservarlo ya](#reservar).`,
         chips: ["Añadir extras", "Reservar", "¿Qué incluye?"],
       };
     }

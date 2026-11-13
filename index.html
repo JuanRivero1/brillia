@@ -43,7 +43,7 @@
       <ul class="nav__enlaces" id="enlaces">
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#presupuesto">Presupuesto</a></li>
-        <li><a href="#antes-despues">Resultados</a></li>
+        <li><a href="#prueba">Pruébalo</a></li>
         <li><a href="#opiniones">Opiniones</a></li>
         <li><a href="#faq">Preguntas</a></li>
         <li class="nav__cta"><a class="btn btn--primario btn--sm" href="#reservar">Reservar</a></li>
@@ -74,22 +74,20 @@
           </ul>
         </div>
 
-        <div class="hero__demo">
-          <div class="demo" id="demo">
-            <div class="demo__limpio">
-              <div class="demo__salon">
-                <div class="ventana"></div>
-                <div class="planta"><i></i><i></i><i></i></div>
-                <div class="sofa"></div>
-                <div class="mesa"></div>
-                <div class="lampara"></div>
-              </div>
-              <div class="demo__brillo" aria-hidden="true">✨</div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="escena-hero">
+            <div class="demo__salon">
+              <div class="ventana"></div>
+              <div class="planta"><i></i><i></i><i></i></div>
+              <div class="sofa"></div>
+              <div class="mesa"></div>
+              <div class="lampara"></div>
             </div>
-            <canvas class="demo__sucio" id="lienzoSucio" aria-label="Pasa el ratón para limpiar la escena"></canvas>
-            <div class="demo__pista" id="demoPista">🧽 Pasa la mopa por aquí</div>
-            <div class="demo__barra"><span id="demoPorcentaje">0% limpio</span><div><i id="demoRelleno"></i></div></div>
+            <span class="chispa c1">✨</span><span class="chispa c2">✨</span><span class="chispa c3">✨</span>
           </div>
+          <div class="flotante f1"><strong>⭐ 4,9/5</strong><span>1.200+ opiniones</span></div>
+          <div class="flotante f2"><strong>⏱️ 10 min</strong><span>para confirmarte</span></div>
+          <div class="flotante f3"><strong>🌿 Eco</strong><span>productos certificados</span></div>
         </div>
       </div>
       <a class="hero__scroll" href="#servicios" aria-label="Bajar a servicios"><span></span></a>
@@ -113,7 +111,7 @@
         <header class="seccion__cabecera seccion__cabecera--izq">
           <span class="sobretitulo">Presupuesto instantáneo</span>
           <h2>Tu precio, sin esperar a que te llamen</h2>
-          <p>Mueve los controles y mira cómo cambia el precio. Sin letra pequeña: lo que ves es lo que pagas.</p>
+          <p>Metros, dormitorios y baños: con eso calculamos las horas que hacen falta y el precio cerrado. Sin letra pequeña.</p>
         </header>
 
         <form class="calc" id="calc" aria-label="Calculadora de presupuesto">
@@ -131,6 +129,25 @@
             <label for="metros">Superficie <output id="metrosOut" for="metros">80 m²</output></label>
             <input type="range" id="metros" name="metros" min="30" max="400" step="5" value="80">
             <div class="rango__marcas"><span>30 m²</span><span>400 m²</span></div>
+          </div>
+
+          <div class="calc__grupo calc__grupo--doble">
+            <div class="contador" id="contadorDormitorios">
+              <span class="contador__etiqueta" id="etiquetaDormitorios">🛏️ Dormitorios</span>
+              <div class="contador__control">
+                <button type="button" data-paso="-1" aria-label="Menos dormitorios">−</button>
+                <input type="number" id="dormitorios" name="dormitorios" min="0" max="8" value="2" aria-label="Número de dormitorios">
+                <button type="button" data-paso="1" aria-label="Más dormitorios">+</button>
+              </div>
+            </div>
+            <div class="contador" id="contadorBanos">
+              <span class="contador__etiqueta">🚿 Baños</span>
+              <div class="contador__control">
+                <button type="button" data-paso="-1" aria-label="Menos baños">−</button>
+                <input type="number" id="banos" name="banos" min="1" max="6" value="1" aria-label="Número de baños">
+                <button type="button" data-paso="1" aria-label="Más baños">+</button>
+              </div>
+            </div>
           </div>
 
           <fieldset class="calc__grupo">
@@ -160,7 +177,7 @@
             <div class="resumen__precio"><span class="moneda">€</span><span id="precioTotal">89</span></div>
             <p class="resumen__nota" id="precioNota">por servicio · IVA incluido</p>
             <ul class="resumen__detalle" id="precioDetalle"></ul>
-            <div class="resumen__duracion">⏱️ Duración estimada: <strong id="duracion">3 h</strong> · 👩‍🔧 <strong id="equipo">1 profesional</strong></div>
+            <div class="resumen__duracion">⏱️ <strong id="duracion">3 h</strong> de trabajo · 👩‍🔧 <strong id="equipo">1 profesional</strong> · <span id="precioM2">1,1 €/m²</span></div>
             <a class="btn btn--primario btn--bloque" href="#reservar" id="btnReservarPrecio" data-brillo>Reservar este precio</a>
             <button class="enlace" type="button" data-abrir-chat data-mensaje="¿Qué incluye este presupuesto?">¿Qué incluye? Pregunta a Brilli</button>
           </div>
@@ -168,34 +185,30 @@
       </div>
     </section>
 
-    <!-- ANTES / DESPUÉS -->
-    <section class="seccion" id="antes-despues" data-mopa>
+    <!-- PRUÉBALO: demo interactiva -->
+    <section class="seccion" id="prueba" data-mopa>
       <div class="contenedor">
         <header class="seccion__cabecera">
-          <span class="sobretitulo">Resultados reales</span>
-          <h2>Arrastra la mopa y compruébalo</h2>
-          <p>Así de simple es la diferencia entre un espacio y un espacio Brillia.</p>
+          <span class="sobretitulo">Pruébalo tú</span>
+          <h2>Pasa la mopa y mira cómo queda</h2>
+          <p>Así de satisfactorio es ver un espacio limpio. Imagina tu casa.</p>
         </header>
-        <div class="comparador" id="comparador" aria-label="Comparador antes y después">
-          <div class="comparador__despues">
-            <div class="escena escena--limpia">
-              <div class="escena__suelo"></div><div class="escena__ventana"></div><div class="escena__encimera"></div>
-              <div class="escena__sello">DESPUÉS ✨</div>
+        <div class="demo" id="demo">
+          <div class="demo__limpio">
+            <div class="demo__salon">
+              <div class="ventana"></div>
+              <div class="planta"><i></i><i></i><i></i></div>
+              <div class="sofa"></div>
+              <div class="mesa"></div>
+              <div class="lampara"></div>
             </div>
+            <div class="demo__brillo" aria-hidden="true">✨</div>
           </div>
-          <div class="comparador__antes" id="comparadorAntes">
-            <div class="escena escena--sucia">
-              <div class="escena__suelo"></div><div class="escena__ventana"></div><div class="escena__encimera"></div>
-              <span class="mancha m1"></span><span class="mancha m2"></span><span class="mancha m3"></span><span class="mancha m4"></span><span class="mancha m5"></span>
-              <div class="escena__sello escena__sello--antes">ANTES</div>
-            </div>
-          </div>
-          <div class="comparador__mango" id="comparadorMango" style="left:50%">
-            <div class="comparador__palo"></div>
-            <div class="comparador__cabezal"><span></span><span></span><span></span><span></span><span></span></div>
-          </div>
-          <input type="range" class="comparador__rango" id="comparadorRango" min="0" max="100" value="50" aria-label="Posición del comparador">
+          <canvas class="demo__sucio" id="lienzoSucio" aria-label="Pasa el ratón para limpiar la escena"></canvas>
+          <div class="demo__pista" id="demoPista">🧽 Pasa la mopa por aquí</div>
+          <div class="demo__barra"><span id="demoPorcentaje">0% limpio</span><div><i id="demoRelleno"></i></div></div>
         </div>
+        <p class="demo__cta">¿Prefieres que lo hagamos nosotros? <a class="btn btn--primario btn--sm" href="#presupuesto" data-brillo>Calcula tu precio</a></p>
       </div>
     </section>
 
