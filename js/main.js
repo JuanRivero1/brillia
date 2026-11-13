@@ -207,28 +207,24 @@
   const equipoEl = $("#equipo");
   let presupuestoActual = null;
 
-  function calcularPresupuesto({ tipo, m2, estancias = 2, banos = 1, frecuencia = "unica", extras = [] }) {
+  function calcularPresupuesto({ tipo, m2, frecuencia, extras }) {
     const t = D.tarifas[tipo];
-    // Tiempo: metros + estancias + baños (+ media hora por extra)
-    const horasBrutas = t.horasBase + t.horasPorM2 * m2 + t.horasPorEstancia * estancias + t.horasPorBano * banos + extras.length * 0.5;
-    const horas = Math.max(t.minHoras, Math.round(horasBrutas * 2) / 2);
-    // Precio: horas de trabajo + suplemento por m² (productos, maquinaria y desplazamiento) + extras
-    const manoDeObra = horas * D.tarifaHora;
-    const suplementoM2 = t.eurPorM2 * m2;
+    const base = t.base + t.porM2 * m2;
     const extrasTotal = extras.reduce((a, e) => a + e.precio, 0);
     const descuento = D.descuentos[frecuencia] || 0;
-    const subtotal = manoDeObra + suplementoM2 + extrasTotal;
-    const ahorro = subtotal * descuento;
-    const total = Math.max(subtotal - ahorro, 45);
+    const ahorro = (base + extrasTotal) * descuento;
+    const total = Math.max(base + extrasTotal - ahorro, 39);
+    const horas = Math.max(t.minHoras, t.horasPorM2 * m2 + extras.length * 0.5);
     const equipo = horas > 5 ? 2 : 1;
-    return { tipo, nombre: t.nombre, m2, estancias, banos, frecuencia, extras, horas, manoDeObra, suplementoM2, extrasTotal, descuento, ahorro, total, equipo, duracion: horas / equipo, eurM2: total / m2 };
+    const horasReales = horas / equipo;
+    return { tipo, nombre: t.nombre, m2, frecuencia, extras, base, extrasTotal, descuento, ahorro, total, horas: horasReales, equipo };
   }
   window.calcularPresupuesto = calcularPresupuesto;
 
   function leerFormulario() {
     const fd = new FormData(form);
     const extras = $$('input[name="extras"]:checked', form).map((i) => ({ id: i.value, nombre: i.nextElementSibling.textContent.replace(/\s\+\d+€/, "").trim(), precio: Number(i.dataset.precio) }));
-    return { tipo: fd.get("tipo"), m2: Number(fd.get("metros")), estancias: Number(fd.get("dormitorios")), banos: Number(fd.get("banos")), frecuencia: fd.get("frecuencia"), extras };
+    return { tipo: fd.get("tipo"), m2: Number(fd.get("metros")), frecuencia: fd.get("frecuencia"), extras };
   }
   function calcular() {
     const p = calcularPresupuesto(leerFormulario());
@@ -239,27 +235,16 @@
     }
     precioTotal.textContent = eur(p.total);
     precioNota.textContent = p.frecuencia === "unica" ? "por servicio · IVA incluido" : `por servicio, ${D.nombresFrecuencia[p.frecuencia]} · IVA incluido`;
-    const hTxt = String(p.horas).replace(".5", ",5");
-    const filas = [
-      `<li><span>${p.nombre}: ${hTxt} h × ${D.tarifaHora} €/h</span><span>${eur(p.manoDeObra)} €</span></li>`,
-      `<li><span>Productos y desplazamiento · ${p.m2} m²</span><span>${eur(p.suplementoM2)} €</span></li>`,
-    ].concat(p.extras.map((e) => `<li><span>${e.nombre}</span><span>+${e.precio} €</span></li>`));
+    const filas = [`<li><span>${p.nombre} · ${p.m2} m²</span><span>${eur(p.base)} €</span></li>`]
+      .concat(p.extras.map((e) => `<li><span>${e.nombre}</span><span>+${e.precio} €</span></li>`));
     if (p.ahorro > 0) filas.push(`<li class="ahorro"><span>Descuento ${D.nombresFrecuencia[p.frecuencia]} (${Math.round(p.descuento * 100)}%)</span><span>−${eur(p.ahorro)} €</span></li>`);
     precioDetalle.innerHTML = filas.join("");
-    duracionEl.textContent = `${p.horas} h`.replace(".5", ",5");
-    equipoEl.textContent = p.equipo === 1 ? "1 profesional" : `${p.equipo} profesionales (${String(p.duracion).replace(".5", ",5")} h en casa)`;
-    $("#precioM2").textContent = `${p.eurM2.toFixed(2).replace(".", ",")} €/m²`;
-    $("#etiquetaDormitorios").textContent = D.tarifas[p.tipo].etiquetaEstancias;
+    const h = Math.round(p.horas * 2) / 2;
+    duracionEl.textContent = `${h} h`.replace(".5", ",5");
+    equipoEl.textContent = p.equipo === 1 ? "1 profesional" : `${p.equipo} profesionales`;
     actualizarResumenReserva();
   }
   form.addEventListener("input", calcular);
-  // Botones + / − de dormitorios y baños
-  form.addEventListener("click", (e) => {
-    const b = e.target.closest("[data-paso]"); if (!b) return;
-    const input = b.parentElement.querySelector("input");
-    const v = Math.min(Number(input.max), Math.max(Number(input.min), Number(input.value || 0) + Number(b.dataset.paso)));
-    input.value = v; calcular();
-  });
 
   /* ---------- Contadores ---------- */
   (() => {
@@ -322,7 +307,7 @@
   function actualizarResumenReserva() {
     if (!presupuestoActual) return;
     const p = presupuestoActual;
-    formResumen.innerHTML = `🧾 <strong>${p.nombre}</strong> · ${p.m2} m², ${p.estancias} ${D.tarifas[p.tipo].etiquetaEstancias.replace(/^\S+\s/, "").toLowerCase()}, ${p.banos} ${p.banos === 1 ? "baño" : "baños"} · ${D.nombresFrecuencia[p.frecuencia]}${p.extras.length ? " · " + p.extras.map((e) => e.nombre).join(", ") : ""} → <strong>${eur(p.total)} €</strong> <button type="button" class="enlace" style="color:#5eead4" data-ir="#presupuesto">cambiar</button>`;
+    formResumen.innerHTML = `🧾 <strong>${p.nombre}</strong> · ${p.m2} m² · ${D.nombresFrecuencia[p.frecuencia]}${p.extras.length ? " · " + p.extras.map((e) => e.nombre).join(", ") : ""} → <strong>${eur(p.total)} €</strong> <button type="button" class="enlace" style="color:#5eead4" data-ir="#presupuesto">cambiar</button>`;
   }
   formResumen.addEventListener("click", (e) => { const b = e.target.closest("[data-ir]"); if (b) $(b.dataset.ir).scrollIntoView({ behavior: "smooth" }); });
 
@@ -334,7 +319,7 @@
     const p = presupuestoActual;
     const f = fd.get("fecha") ? new Date(fd.get("fecha") + "T12:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }) : "";
     const texto = `Hola Brillia 👋 Quiero reservar:\n` +
-      `• Servicio: ${p.nombre} (${p.m2} m², ${p.estancias} ${D.tarifas[p.tipo].etiquetaEstancias.replace(/^\S+\s/, "").toLowerCase()}, ${p.banos} ${p.banos === 1 ? "baño" : "baños"}, ${D.nombresFrecuencia[p.frecuencia]}) · ${String(p.horas).replace(".5", ",5")} h${p.extras.length ? "\n• Extras: " + p.extras.map((e) => e.nombre).join(", ") : ""}\n` +
+      `• Servicio: ${p.nombre} (${p.m2} m², ${D.nombresFrecuencia[p.frecuencia]})${p.extras.length ? "\n• Extras: " + p.extras.map((e) => e.nombre).join(", ") : ""}\n` +
       `• Precio web: ${eur(p.total)} €\n• Fecha: ${f}, ${fd.get("hora")}\n• Nombre: ${fd.get("nombre")}\n• Teléfono: ${fd.get("telefono")}\n• Dirección: ${fd.get("direccion")}` +
       (fd.get("notas") ? `\n• Notas: ${fd.get("notas")}` : "");
     return texto;

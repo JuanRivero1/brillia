@@ -74,21 +74,17 @@
           </ul>
         </div>
 
-        <div class="hero__visual" aria-hidden="true">
-          <div class="escena-hero">
-            <div class="demo__salon">
-              <div class="ventana"></div>
-              <div class="planta"><i></i><i></i><i></i></div>
-              <div class="sofa"></div>
-              <div class="mesa"></div>
-              <div class="lampara"></div>
-            </div>
-            <span class="chispa c1">✨</span><span class="chispa c2">✨</span><span class="chispa c3">✨</span>
-          </div>
-          <div class="flotante f1"><strong>⭐ 4,9/5</strong><span>1.200+ opiniones</span></div>
-          <div class="flotante f2"><strong>⏱️ 10 min</strong><span>para confirmarte</span></div>
-          <div class="flotante f3"><strong>🌿 Eco</strong><span>productos certificados</span></div>
-        </div>
+        <aside class="hero__intro">
+          <span class="sobretitulo">Quiénes somos</span>
+          <h2>Brillia, limpieza profesional en Madrid</h2>
+          <p>Somos una empresa de limpieza de Madrid formada por un equipo propio, con contrato y seguro, que cuida hogares, oficinas y pisos recién reformados como si fueran suyos.</p>
+          <p>Trabajamos con productos ecológicos certificados, cerramos el precio antes de empezar y, si algo no queda a tu gusto, volvemos a repasarlo gratis. Así de simple es brillar.</p>
+          <ul class="hero__datos">
+            <li><strong>+4.800</strong><span>hogares limpios</span></li>
+            <li><strong>Mismo equipo</strong><span>en cada visita</span></li>
+            <li><strong>Precio cerrado</strong><span>antes de empezar</span></li>
+          </ul>
+        </aside>
       </div>
       <a class="hero__scroll" href="#servicios" aria-label="Bajar a servicios"><span></span></a>
     </section>
@@ -111,7 +107,7 @@
         <header class="seccion__cabecera seccion__cabecera--izq">
           <span class="sobretitulo">Presupuesto instantáneo</span>
           <h2>Tu precio, sin esperar a que te llamen</h2>
-          <p>Metros, dormitorios y baños: con eso calculamos las horas que hacen falta y el precio cerrado. Sin letra pequeña.</p>
+          <p>Mueve los controles y mira cómo cambia el precio. Sin letra pequeña: lo que ves es lo que pagas.</p>
         </header>
 
         <form class="calc" id="calc" aria-label="Calculadora de presupuesto">
@@ -131,24 +127,6 @@
             <div class="rango__marcas"><span>30 m²</span><span>400 m²</span></div>
           </div>
 
-          <div class="calc__grupo calc__grupo--doble">
-            <div class="contador" id="contadorDormitorios">
-              <span class="contador__etiqueta" id="etiquetaDormitorios">🛏️ Dormitorios</span>
-              <div class="contador__control">
-                <button type="button" data-paso="-1" aria-label="Menos dormitorios">−</button>
-                <input type="number" id="dormitorios" name="dormitorios" min="0" max="8" value="2" aria-label="Número de dormitorios">
-                <button type="button" data-paso="1" aria-label="Más dormitorios">+</button>
-              </div>
-            </div>
-            <div class="contador" id="contadorBanos">
-              <span class="contador__etiqueta">🚿 Baños</span>
-              <div class="contador__control">
-                <button type="button" data-paso="-1" aria-label="Menos baños">−</button>
-                <input type="number" id="banos" name="banos" min="1" max="6" value="1" aria-label="Número de baños">
-                <button type="button" data-paso="1" aria-label="Más baños">+</button>
-              </div>
-            </div>
-          </div>
 
           <fieldset class="calc__grupo">
             <legend>Frecuencia</legend>
@@ -177,7 +155,7 @@
             <div class="resumen__precio"><span class="moneda">€</span><span id="precioTotal">89</span></div>
             <p class="resumen__nota" id="precioNota">por servicio · IVA incluido</p>
             <ul class="resumen__detalle" id="precioDetalle"></ul>
-            <div class="resumen__duracion">⏱️ <strong id="duracion">3 h</strong> de trabajo · 👩‍🔧 <strong id="equipo">1 profesional</strong> · <span id="precioM2">1,1 €/m²</span></div>
+            <div class="resumen__duracion">⏱️ Duración estimada: <strong id="duracion">3 h</strong> · 👩‍🔧 <strong id="equipo">1 profesional</strong></div>
             <a class="btn btn--primario btn--bloque" href="#reservar" id="btnReservarPrecio" data-brillo>Reservar este precio</a>
             <button class="enlace" type="button" data-abrir-chat data-mensaje="¿Qué incluye este presupuesto?">¿Qué incluye? Pregunta a Brilli</button>
           </div>
