@@ -45,3 +45,13 @@ y abre <http://localhost:8030>. Para comprobar la sintaxis del JS: `node --check
 ## Despliegue
 
 El proyecto está pensado para Vercel: al importar el repositorio no hace falta ningún comando de build ni carpeta de salida (es un sitio estático).
+
+## SEO
+
+La skill de Claude Code `.claude/skills/brillia-seo/` recoge cómo auditar y mejorar el posicionamiento de la web: script de auditoría, plantillas (títulos, JSON-LD, robots.txt, sitemap, páginas de servicio), mapa de palabras clave y guía de Search Console y Google Business. Para auditar a mano:
+
+```bash
+python3 .claude/skills/brillia-seo/scripts/auditar_seo.py https://brilliaes.com
+```
+
+La carpeta `.claude/` y este README no se publican en la web (ver `.vercelignore`).
