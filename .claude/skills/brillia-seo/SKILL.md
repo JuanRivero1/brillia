@@ -16,8 +16,17 @@ Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 ## Cómo es la web (y por qué importa para el SEO)
 
 - `index.html` es la única página. Las secciones van por anclas (`#servicios`, `#presupuesto`, `#prueba`, `#opiniones`, `#reservar`, `#faq`).
-- **Parte del contenido no está en el HTML**: servicios, opiniones y preguntas frecuentes se pintan con JavaScript desde `js/datos.js`. Google ejecuta JavaScript, pero con retraso y no siempre; otros buscadores y las vistas previas de redes sociales no. Por eso el contenido importante para posicionar debe estar también en el HTML estático o en datos estructurados (por ejemplo, un `FAQPage` en JSON-LD con las mismas preguntas).
-- `js/datos.js` es la fuente única de teléfono, email, servicios, tarifas, opiniones y FAQ. Si cambias un dato de contacto o un servicio en el SEO, debe coincidir con lo que hay ahí, porque Google penaliza la información incoherente entre la web, la ficha de Google y los directorios.
+- `js/datos.js` es la fuente única de teléfono, email, servicios, tarifas, opiniones y FAQ. `js/main.js` los pinta en el navegador. Google ejecuta JavaScript, pero con retraso y no siempre; otros buscadores y las vistas previas de redes sociales no. Por eso las tarjetas de servicios, las preguntas frecuentes y el JSON-LD (`CleaningService` + `FAQPage`) también están en el HTML estático, entre marcadores `<!-- datos:servicios -->`, `<!-- datos:faq -->` y `<!-- datos:jsonld -->` de `index.html`.
+- **Esos bloques no se editan a mano**: los genera `scripts/sincronizar_html.mjs` a partir de `js/datos.js`. Cada vez que cambien servicios, precios "desde", FAQ, teléfono o email en `datos.js`, ejecútalo desde la raíz del repo:
+
+  ```bash
+  node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs
+  node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs --comprobar   # solo comprueba; sale con 1 si está desfasado
+  ```
+
+  Así la web, los datos estructurados y el chat dicen siempre lo mismo, que es lo que Google exige (información incoherente entre la web, la ficha de Google y los directorios penaliza). El horario del JSON-LD está en la constante `HORARIO` del script.
+- Las opiniones se quedan solo en JavaScript a propósito: son de ejemplo hasta que el usuario las sustituya (ver "Datos reales").
+- La imagen para compartir (`assets/og-brillia.jpg`, 1200×630) y el logo (`assets/logo-512.png`) se generan desde `assets/og-brillia.html` y `assets/logo-512.html` de esta skill con Chrome sin interfaz. Regénéralos si cambia el lema, el teléfono o los colores (comandos en `references/plantillas.md`, sección 5).
 - `vercel.json` tiene `cleanUrls: true`: un archivo `limpieza-fin-de-obra-madrid.html` se sirve como `/limpieza-fin-de-obra-madrid`. Así se crean páginas nuevas sin tocar configuración.
 - El idioma de la web, los textos y los nombres del código están en español. Mantenlo.
 
@@ -47,13 +56,13 @@ Presenta al usuario los hallazgos en lenguaje llano, con lo más rentable primer
 Por orden de impacto para un negocio local como Brillia:
 
 1. **Título y descripción** de cada página. El título, de unos 50–60 caracteres, con servicio + Madrid + marca. La descripción, de 140–160, con beneficio, zona y llamada a la acción. Ejemplos y plantillas en `references/plantillas.md`.
-2. **Datos estructurados JSON-LD** en `<head>`: `CleaningService` (un tipo de `LocalBusiness`) con nombre, URL, teléfono, email, zona de servicio, horario y servicios; y `FAQPage` con las preguntas de `js/datos.js`. Plantillas en `references/plantillas.md`.
+2. **Datos estructurados JSON-LD** en `<head>`: `CleaningService` (un tipo de `LocalBusiness`) y `FAQPage`. En `index.html` los genera `sincronizar_html.mjs`; para cambiar su estructura, edita el script, no el HTML. En páginas nuevas usa las plantillas de `references/plantillas.md`.
 3. **robots.txt y sitemap.xml** en la raíz del repo. Sin ellos Google tarda más en descubrir páginas nuevas. Actualiza el sitemap cada vez que añadas o quites una página, con la fecha del día en `lastmod`.
 4. **Imagen para compartir** (`og:image`, 1200×630) y etiquetas `twitter:card`. Afecta a cómo se ve el enlace al enviarlo por WhatsApp, que para Brillia es el canal principal.
 5. **Encabezados**: un solo H1 por página, y H2 que contengan búsquedas reales donde encaje sin forzar ("Limpieza de pisos en Madrid", "Limpieza fin de obra").
 6. **Páginas de servicio y de zona**. Es lo que más tráfico trae a largo plazo. Ver la siguiente sección.
 
-Tras cada cambio, ejecuta `node --check js/*.js` si tocaste JavaScript, abre la web en local y repite la auditoría.
+Tras cada cambio, ejecuta `node --check js/*.js` si tocaste JavaScript, `sincronizar_html.mjs --comprobar`, abre la web en local y repite la auditoría.
 
 ### 3. Crear páginas de servicio o de zona
 
@@ -73,7 +82,7 @@ Plantilla de página en `references/plantillas.md`.
 
 ### 4. Publicar y verificar
 
-1. Commit con mensaje en español y `git push`. Vercel despliega solo en uno o dos minutos.
+1. Comprueba que `index.html` está sincronizado (`sincronizar_html.mjs --comprobar`). Commit con mensaje en español y `git push`. Vercel despliega solo en uno o dos minutos.
 2. Comprueba que producción sirve tu versión comparando archivos:
 
    ```bash

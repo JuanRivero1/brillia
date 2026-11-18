@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brilliaes.com/sitemap.xml

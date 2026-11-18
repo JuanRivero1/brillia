@@ -313,7 +313,9 @@ def auditar_pagina(r: Respuesta, p: Analizador, inf: Informe, es_produccion: boo
     S = "Contenido"
     for cid, nombre in CONTENEDORES_JS.items():
         if cid in p.vacios:
-            if p.vacios[cid]:
+            if p.vacios[cid] and cid == "opinionesLista":
+                inf.aviso(S, "Las opiniones solo existen vía JavaScript. Es intencionado mientras sean de ejemplo; cuando sean reales, añádelas al HTML con permiso de los clientes.")
+            elif p.vacios[cid]:
                 inf.aviso(S, f"{nombre} (`#{cid}`) solo existen vía JavaScript; conviene tener ese contenido también en el HTML o en JSON-LD para que todos los buscadores lo lean.")
             else:
                 inf.ok(S, f"{nombre} (`#{cid}`) están en el HTML.")

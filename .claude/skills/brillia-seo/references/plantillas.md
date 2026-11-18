@@ -27,7 +27,7 @@ El H1 puede conservar el tono de marca siempre que incluya el qué. Por ejemplo:
 
 ## 2. JSON-LD: negocio local
 
-Va en `<head>` de `index.html`. `CleaningService` es el tipo de schema.org para empresas de limpieza. Brillia no tiene local abierto al público: usa `areaServed` para las zonas y deja en `address` solo localidad, región y país, salvo que el usuario dé una dirección fiscal que quiera mostrar.
+En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`; esta plantilla sirve para entender la estructura o para cambiar el script. `CleaningService` es el tipo de schema.org para empresas de limpieza. Brillia no tiene local abierto al público: usa `areaServed` para las zonas y deja en `address` solo localidad, región y país, salvo que el usuario dé una dirección fiscal que quiera mostrar.
 
 ```html
 <script type="application/ld+json">
@@ -84,7 +84,7 @@ Va en `<head>` de `index.html`. `CleaningService` es el tipo de schema.org para 
 
 ## 3. JSON-LD: preguntas frecuentes
 
-Debe repetir exactamente las preguntas y respuestas de `D.faq` en `js/datos.js`. Si alguien cambia la FAQ allí, hay que cambiar también este bloque. Una forma de no olvidarlo es dejar un comentario junto a `faq:` en `datos.js` que lo recuerde.
+Debe repetir exactamente las preguntas y respuestas de `D.faq` en `js/datos.js`. En `index.html` lo genera `sincronizar_html.mjs`; en una página de servicio con preguntas propias, escríbelo a mano con esta plantilla.
 
 ```html
 <script type="application/ld+json">
@@ -135,11 +135,17 @@ Desde 2023 Google solo muestra el desplegable de FAQ en los resultados de webs o
 <meta name="twitter:card" content="summary_large_image">
 ```
 
-La imagen debe ser JPG o PNG de 1200×630, de menos de 300 KB, con la URL absoluta. WhatsApp no muestra SVG. Si no hay foto real, se puede generar una con el logo, el lema y los colores de la web (`#0ea5a4`, `#0f766e`, `#a3e635`) renderizando un HTML con Chrome sin interfaz:
+La imagen debe ser JPG o PNG de 1200×630, de menos de 300 KB, con la URL absoluta. WhatsApp no muestra SVG. La actual se genera desde `assets/og-brillia.html` de la skill; edita ese HTML (lema, teléfono, colores) y regenérala desde la raíz del repo. La captura se hace en el scratchpad y luego se convierte a JPG en `assets/`:
 
 ```bash
-google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=assets/og-brillia.png file:///ruta/a/og.html
+SK=.claude/skills/brillia-seo/assets
+google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --virtual-time-budget=6000 --screenshot=/ruta/scratchpad/og.png "file://$PWD/$SK/og-brillia.html"
+python3 -c "from PIL import Image; Image.open('/ruta/scratchpad/og.png').convert('RGB').save('assets/og-brillia.jpg', quality=85, optimize=True, progressive=True)"
 ```
+
+El logo de 512×512 (`assets/logo-512.png`, usado en el JSON-LD y como icono) sale igual de `logo-512.html`, con `--window-size=512,512` y guardando en PNG.
+
+Para una página de servicio, puedes hacer una imagen propia copiando `og-brillia.html` y cambiando el texto (por ejemplo `og-fin-de-obra.jpg`).
 
 ## 6. robots.txt
 

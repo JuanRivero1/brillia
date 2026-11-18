@@ -20,6 +20,9 @@ window.BRILLIA = {
   descuentos: { unica: 0, semanal: 0.15, quincenal: 0.10, mensual: 0.05 },
   nombresFrecuencia: { unica: "una vez", semanal: "cada semana", quincenal: "cada dos semanas", mensual: "cada mes" },
 
+  // Tras cambiar servicios o FAQ, ejecuta desde la raíz:
+  //   node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs
+  // para copiarlos al HTML estático y a los datos estructurados de Google.
   servicios: [
     { id: "hogar", icono: "🏠", titulo: "Hogar", texto: "Mantenimiento semanal o puntual: polvo, suelos, baños, cocina y cristales interiores.", desde: 59, destacado: "Más pedido" },
     { id: "oficina", icono: "🏢", titulo: "Oficinas", texto: "Espacios de trabajo impecables, antes de que llegue tu equipo o cuando se va.", desde: 69 },
