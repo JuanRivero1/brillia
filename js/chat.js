@@ -1,16 +1,16 @@
-/* ===== Brilli · asistente de chat (sin servidor, 100 % en el navegador) ===== */
+/* ===== Asistente de chat (sin servidor, 100 % en el navegador) ===== */
 (() => {
   "use strict";
-  const D = window.BRILLIA;
+  const D = window.TUSERVICIO;
   const $ = (s) => document.querySelector(s);
   const burbuja = $("#chatBurbuja"), panel = $("#chatPanel"), cerrar = $("#chatCerrar");
   const mensajes = $("#chatMensajes"), chips = $("#chatChips"), form = $("#chatForm"), input = $("#chatInput"), badge = $("#chatBadge");
   const eur = (n) => new Intl.NumberFormat("es-ES", { maximumFractionDigits: 0 }).format(Math.round(n));
   const normalizar = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
   let historial = [];
-  try { historial = JSON.parse(sessionStorage.getItem("brilli-historial") || "[]"); } catch {}
+  try { historial = JSON.parse(sessionStorage.getItem("chat-historial") || "[]"); } catch {}
 
-  const guardar = () => { try { sessionStorage.setItem("brilli-historial", JSON.stringify(historial.slice(-30))); } catch {} };
+  const guardar = () => { try { sessionStorage.setItem("chat-historial", JSON.stringify(historial.slice(-30))); } catch {} };
 
   const enlazar = (texto) => texto
     .replace(/\[([^\]]+)\]\(whatsapp\)/g, `<a href="https://wa.me/${D.config.telefono}" target="_blank" rel="noopener">$1</a>`)
@@ -32,7 +32,7 @@
     mensajes.appendChild(d); mensajes.scrollTop = mensajes.scrollHeight; return d;
   }
 
-  /* --- Cerebro de Brilli --- */
+  /* --- Cerebro del asistente --- */
   function responder(pregunta) {
     const q = normalizar(pregunta);
 
@@ -83,7 +83,7 @@
       if (historial.length) { historial.forEach((m) => pintar(m.texto, m.quien, false)); pintarChips(["¿Cuánto cuesta?", "Reservar", "Zonas"]); }
       else {
         const t = escribiendo();
-        setTimeout(() => { t.remove(); pintar("¡Hola! 👋 Soy Brilli. Pregúntame lo que quieras sobre nuestras limpiezas: precios, zonas, horarios... o dime los metros de tu casa y te doy el precio al momento.", "bot"); pintarChips(["¿Cuánto cuesta?", "80 m² hogar", "Zonas", "Reservar"]); }, 600);
+        setTimeout(() => { t.remove(); pintar("¡Hola! 👋 Soy la asistente de TUservicio. Pregúntame lo que quieras sobre nuestras limpiezas: precios, zonas, horarios... o dime los metros de tu casa y te doy el precio al momento.", "bot"); pintarChips(["¿Cuánto cuesta?", "80 m² hogar", "Zonas", "Reservar"]); }, 600);
       }
     }
     if (mensajeInicial) setTimeout(() => enviar(mensajeInicial), abiertoAntes && historial.length ? 100 : 1300);
@@ -98,7 +98,7 @@
   mensajes.addEventListener("click", (e) => { if (e.target.closest("[data-cerrar-chat]") && innerWidth < 760) cerrarChat(); });
 
   // Invitación discreta a los 12 s si no se ha abierto
-  setTimeout(() => { if (panel.hidden && !historial.length) { badge.hidden = false; burbuja.classList.add("latir"); window.mostrarToast?.("💬 ¿Dudas? Brilli te responde al instante"); } }, 12000);
+  setTimeout(() => { if (panel.hidden && !historial.length) { badge.hidden = false; burbuja.classList.add("latir"); window.mostrarToast?.("💬 ¿Dudas? Nuestra asistente te responde al instante"); } }, 12000);
 
-  window.Brilli = { abrir, cerrar: cerrarChat, enviar };
+  window.Asistente = { abrir, cerrar: cerrarChat, enviar };
 })();

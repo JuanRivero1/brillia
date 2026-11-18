@@ -1,7 +1,7 @@
-/* ===== Brillia · lógica principal ===== */
+/* ===== TUservicio · lógica principal ===== */
 (() => {
   "use strict";
-  const D = window.BRILLIA;
+  const D = window.TUSERVICIO;
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reducirMovimiento = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -12,12 +12,12 @@
   const btnTema = $("#btnTema");
   const aplicarTema = (t) => { raiz.dataset.tema = t; btnTema.textContent = t === "oscuro" ? "☀️" : "🌙"; };
   try {
-    aplicarTema(localStorage.getItem("brillia-tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "oscuro" : "claro"));
+    aplicarTema(localStorage.getItem("tuservicio-tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "oscuro" : "claro"));
   } catch { aplicarTema("claro"); }
   btnTema.addEventListener("click", () => {
     const t = raiz.dataset.tema === "oscuro" ? "claro" : "oscuro";
     aplicarTema(t);
-    try { localStorage.setItem("brillia-tema", t); } catch {}
+    try { localStorage.setItem("tuservicio-tema", t); } catch {}
   });
 
   /* ---------- Cabecera, menú y progreso ---------- */
@@ -318,7 +318,7 @@
     if (!ok) { mostrarToast("Revisa los campos marcados 🙏"); return null; }
     const p = presupuestoActual;
     const f = fd.get("fecha") ? new Date(fd.get("fecha") + "T12:00").toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }) : "";
-    const texto = `Hola Brillia 👋 Quiero reservar:\n` +
+    const texto = `Hola TUservicio 👋 Quiero reservar:\n` +
       `• Servicio: ${p.nombre} (${p.m2} m², ${D.nombresFrecuencia[p.frecuencia]})${p.extras.length ? "\n• Extras: " + p.extras.map((e) => e.nombre).join(", ") : ""}\n` +
       `• Precio web: ${eur(p.total)} €\n• Fecha: ${f}, ${fd.get("hora")}\n• Nombre: ${fd.get("nombre")}\n• Teléfono: ${fd.get("telefono")}\n• Dirección: ${fd.get("direccion")}` +
       (fd.get("notas") ? `\n• Notas: ${fd.get("notas")}` : "");
@@ -333,15 +333,15 @@
   });
   $("#btnEmail").addEventListener("click", () => {
     const texto = datosReserva(); if (!texto) return;
-    location.href = `mailto:${D.config.email}?subject=${encodeURIComponent("Reserva de limpieza · Brillia")}&body=${encodeURIComponent(texto)}`;
+    location.href = `mailto:${D.config.email}?subject=${encodeURIComponent("Reserva de limpieza · TUservicio")}&body=${encodeURIComponent(texto)}`;
   });
   formReserva.addEventListener("input", (e) => e.target.closest(".campo")?.classList.remove("error"));
 
   /* ---------- Contacto en pie y WhatsApp flotante ---------- */
   $("#pieTelefono").textContent = D.config.telefonoBonito; $("#pieTelefono").href = `tel:+${D.config.telefono}`;
   $("#pieEmail").textContent = D.config.email; $("#pieEmail").href = `mailto:${D.config.email}`;
-  $("#whatsappFlotante").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola Brillia 👋, quiero información sobre una limpieza.")}`;
-  $("#reservaWhatsapp").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola Brillia 👋, quiero reservar una limpieza.")}`;
+  $("#whatsappFlotante").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola TUservicio 👋, quiero información sobre una limpieza.")}`;
+  $("#reservaWhatsapp").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola TUservicio 👋, quiero reservar una limpieza.")}`;
   $("#reservaWhatsapp").textContent = `WhatsApp ${D.config.telefonoBonito.replace("+34 ", "")}`;
   $("#reservaLlamar").href = `tel:+${D.config.telefono}`;
   $("#anio").textContent = new Date().getFullYear();
@@ -374,6 +374,6 @@
     const b = e.target.closest("[data-abrir-chat]");
     if (!b) return;
     e.preventDefault();
-    window.Brilli?.abrir(b.dataset.mensaje);
+    window.Asistente?.abrir(b.dataset.mensaje);
   });
 })();

@@ -1,11 +1,13 @@
 ---
-name: brillia-seo
-description: Gestiona el posicionamiento SEO de la web de Brillia (brilliaes.com), la empresa de limpieza en Madrid. Audita la página, corrige títulos, descripciones, encabezados, datos estructurados, robots.txt y sitemap, crea páginas de servicio orientadas a búsquedas locales y verifica el resultado en producción. Úsala siempre que el usuario hable de SEO, posicionamiento, Google, salir en buscadores, palabras clave, Search Console, ficha de Google Business, visitas orgánicas, "que me encuentren", meta descripciones, sitemap o nuevas páginas para captar clientes, aunque no diga "SEO" de forma explícita.
+name: tuservicio-seo
+description: Gestiona el posicionamiento SEO de la web de TUservicio (brilliaes.com), la empresa de limpieza en Madrid. Audita la página, corrige títulos, descripciones, encabezados, datos estructurados, robots.txt y sitemap, crea páginas de servicio orientadas a búsquedas locales y verifica el resultado en producción. Úsala siempre que el usuario hable de SEO, posicionamiento, Google, salir en buscadores, palabras clave, Search Console, ficha de Google Business, visitas orgánicas, "que me encuentren", meta descripciones, sitemap o nuevas páginas para captar clientes, aunque no diga "SEO" de forma explícita.
 ---
 
-# SEO de Brillia
+# SEO de TUservicio
 
-Brillia es una empresa de limpieza de Madrid con una web estática de una sola página: HTML, CSS y JavaScript sin frameworks ni build, en la raíz del repo. Se despliega sola en Vercel con cada `git push` a `main` y se sirve en https://brilliaes.com. Su objetivo es que alguien en Madrid que busque "limpieza de pisos", "limpieza fin de obra" o "empresa de limpieza cerca de mí" encuentre Brillia y le escriba por WhatsApp.
+TUservicio es una empresa de limpieza de Madrid con una web estática de una sola página: HTML, CSS y JavaScript sin frameworks ni build, en la raíz del repo. Se despliega sola en Vercel con cada `git push` a `main` y se sirve en https://brilliaes.com. Su objetivo es que alguien en Madrid que busque "limpieza de pisos", "limpieza fin de obra" o "empresa de limpieza cerca de mí" encuentre TUservicio y le escriba por WhatsApp.
+
+> **Cambio de marca en curso (18 nov 2026).** La empresa se llamaba Brillia y pasa a llamarse TUservicio. La marca ya está cambiada en la rama `tuservicio`, pero el dominio sigue siendo `brilliaes.com` hasta que el usuario compre el nuevo. Cuando lo tenga, sustituye `brilliaes.com` en todo el repo (`git grep -l brilliaes.com`), incluido el email `info@brilliaes.com` si cambia, vuelve a ejecutar `sincronizar_html.mjs`, une la rama a `main` y añade el dominio nuevo al proyecto de Vercel.
 
 Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 
@@ -20,13 +22,13 @@ Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 - **Esos bloques no se editan a mano**: los genera `scripts/sincronizar_html.mjs` a partir de `js/datos.js`. Cada vez que cambien servicios, precios "desde", FAQ, teléfono o email en `datos.js`, ejecútalo desde la raíz del repo:
 
   ```bash
-  node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs
-  node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs --comprobar   # solo comprueba; sale con 1 si está desfasado
+  node .claude/skills/tuservicio-seo/scripts/sincronizar_html.mjs
+  node .claude/skills/tuservicio-seo/scripts/sincronizar_html.mjs --comprobar   # solo comprueba; sale con 1 si está desfasado
   ```
 
   Así la web, los datos estructurados y el chat dicen siempre lo mismo, que es lo que Google exige (información incoherente entre la web, la ficha de Google y los directorios penaliza). El horario del JSON-LD está en la constante `HORARIO` del script.
 - Las opiniones se quedan solo en JavaScript a propósito: son de ejemplo hasta que el usuario las sustituya (ver "Datos reales").
-- La imagen para compartir (`assets/og-brillia.jpg`, 1200×630) y el logo (`assets/logo-512.png`) se generan desde `assets/og-brillia.html` y `assets/logo-512.html` de esta skill con Chrome sin interfaz. Regénéralos si cambia el lema, el teléfono o los colores (comandos en `references/plantillas.md`, sección 5).
+- La imagen para compartir (`assets/og-tuservicio.jpg`, 1200×630) y el logo (`assets/logo-512.png`) se generan desde `assets/og-tuservicio.html` y `assets/logo-512.html` de esta skill con Chrome sin interfaz. Regénéralos si cambia el lema, el teléfono o los colores (comandos en `references/plantillas.md`, sección 5).
 - `vercel.json` tiene `cleanUrls: true`: un archivo `limpieza-fin-de-obra-madrid.html` se sirve como `/limpieza-fin-de-obra-madrid`. Así se crean páginas nuevas sin tocar configuración.
 - El idioma de la web, los textos y los nombres del código están en español. Mantenlo.
 
@@ -37,8 +39,8 @@ Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 Ejecuta el script de auditoría. Funciona contra producción o contra el servidor local:
 
 ```bash
-python3 .claude/skills/brillia-seo/scripts/auditar_seo.py https://brilliaes.com
-python3 .claude/skills/brillia-seo/scripts/auditar_seo.py http://localhost:8030
+python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py https://brilliaes.com
+python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py http://localhost:8030
 ```
 
 Revisa título, descripción, canonical, encabezados, imágenes, Open Graph, JSON-LD, robots.txt, sitemap, redirecciones de `www` y HTTPS, enlaces internos rotos y contenido que solo existe vía JavaScript. Termina con una lista de problemas ordenados por gravedad (❌ grave, ⚠️ mejorable). El script solo lee; no cambia nada.
@@ -53,12 +55,12 @@ Presenta al usuario los hallazgos en lenguaje llano, con lo más rentable primer
 
 ### 2. Arreglos en la página
 
-Por orden de impacto para un negocio local como Brillia:
+Por orden de impacto para un negocio local como TUservicio:
 
 1. **Título y descripción** de cada página. El título, de unos 50–60 caracteres, con servicio + Madrid + marca. La descripción, de 140–160, con beneficio, zona y llamada a la acción. Ejemplos y plantillas en `references/plantillas.md`.
 2. **Datos estructurados JSON-LD** en `<head>`: `CleaningService` (un tipo de `LocalBusiness`) y `FAQPage`. En `index.html` los genera `sincronizar_html.mjs`; para cambiar su estructura, edita el script, no el HTML. En páginas nuevas usa las plantillas de `references/plantillas.md`.
 3. **robots.txt y sitemap.xml** en la raíz del repo. Sin ellos Google tarda más en descubrir páginas nuevas. Actualiza el sitemap cada vez que añadas o quites una página, con la fecha del día en `lastmod`.
-4. **Imagen para compartir** (`og:image`, 1200×630) y etiquetas `twitter:card`. Afecta a cómo se ve el enlace al enviarlo por WhatsApp, que para Brillia es el canal principal.
+4. **Imagen para compartir** (`og:image`, 1200×630) y etiquetas `twitter:card`. Afecta a cómo se ve el enlace al enviarlo por WhatsApp, que para TUservicio es el canal principal.
 5. **Encabezados**: un solo H1 por página, y H2 que contengan búsquedas reales donde encaje sin forzar ("Limpieza de pisos en Madrid", "Limpieza fin de obra").
 6. **Páginas de servicio y de zona**. Es lo que más tráfico trae a largo plazo. Ver la siguiente sección.
 
@@ -69,7 +71,7 @@ Tras cada cambio, ejecuta `node --check js/*.js` si tocaste JavaScript, `sincron
 Una página por intención de búsqueda fuerte posiciona mucho mejor que una sola página que lo intenta todo. Candidatas, de más a menos interesantes (detalle en `references/palabras-clave.md`):
 
 - `/limpieza-pisos-madrid`, `/limpieza-fin-de-obra-madrid`, `/limpieza-oficinas-madrid`, `/limpieza-a-fondo-madrid`.
-- Páginas por municipio solo si Brillia trabaja de verdad allí y hay algo propio que contar (por ejemplo `/limpieza-pisos-alcobendas`). Páginas clónicas cambiando solo el nombre del barrio son contenido duplicado y Google las ignora o penaliza.
+- Páginas por municipio solo si TUservicio trabaja de verdad allí y hay algo propio que contar (por ejemplo `/limpieza-pisos-alcobendas`). Páginas clónicas cambiando solo el nombre del barrio son contenido duplicado y Google las ignora o penaliza.
 
 Cada página nueva:
 

@@ -10,8 +10,8 @@
  * js/main.js sigue pintando lo mismo en el navegador, así que la página se ve igual.
  *
  * Uso, desde la raíz del repo:
- *   node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs              # reescribe index.html
- *   node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs --comprobar  # sale con 1 si está desfasado
+ *   node .claude/skills/tuservicio-seo/scripts/sincronizar_html.mjs              # reescribe index.html
+ *   node .claude/skills/tuservicio-seo/scripts/sincronizar_html.mjs --comprobar  # sale con 1 si está desfasado
  *
  * Las opiniones NO se copian: son de ejemplo hasta que el usuario las sustituya por reales,
  * y nunca deben aparecer como reseñas en datos estructurados (ver SKILL.md, "Datos reales").
@@ -29,8 +29,8 @@ function cargarDatos() {
   const contexto = { window: {} };
   vm.createContext(contexto);
   vm.runInContext(readFileSync(`${RAIZ}/js/datos.js`, "utf8"), contexto, { filename: "js/datos.js" });
-  const D = contexto.window.BRILLIA;
-  if (!D) throw new Error("js/datos.js no define window.BRILLIA");
+  const D = contexto.window.TUSERVICIO;
+  if (!D) throw new Error("js/datos.js no define window.TUSERVICIO");
   return D;
 }
 
@@ -61,7 +61,7 @@ function jsonLd(D) {
     name: c.nombre,
     url: `${URL_BASE}/`,
     logo: `${URL_BASE}/assets/logo-512.png`,
-    image: `${URL_BASE}/assets/og-brillia.jpg`,
+    image: `${URL_BASE}/assets/og-tuservicio.jpg`,
     description: "Empresa de limpieza profesional en Madrid: hogares, oficinas, fin de obra y limpiezas a fondo con productos ecológicos.",
     telephone: `+${c.telefono}`,
     email: c.email,

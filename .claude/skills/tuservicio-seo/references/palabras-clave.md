@@ -1,6 +1,6 @@
 # Palabras clave y estructura de páginas
 
-Brillia es un negocio local: casi todas sus búsquedas útiles llevan "Madrid", un municipio o "cerca de mí" (Google añade la ubicación por su cuenta). Este mapa agrupa las búsquedas por intención, que es lo que decide qué página debe posicionar para cada una.
+TUservicio es un negocio local: casi todas sus búsquedas útiles llevan "Madrid", un municipio o "cerca de mí" (Google añade la ubicación por su cuenta). Este mapa agrupa las búsquedas por intención, que es lo que decide qué página debe posicionar para cada una.
 
 No hay datos de volumen de búsqueda aquí a propósito: cambian y no se deben inventar. Si el usuario quiere cifras, que las mire en Google Search Console (consultas reales que ya traen visitas) o en el Planificador de palabras clave de Google Ads, y priorizad con eso.
 
@@ -16,7 +16,7 @@ No hay datos de volumen de búsqueda aquí a propósito: cambian y no se deben i
 | Extras | limpieza de cristales Madrid, limpieza de sofás a domicilio, limpieza de colchones | Secciones dentro de las páginas de servicio, o página propia si el usuario ve demanda |
 | Precio | cuánto cuesta una limpieza de piso, precio limpieza por hora Madrid, presupuesto limpieza fin de obra | La página del servicio, con una sección de precios clara y la calculadora |
 
-Las búsquedas de precio son muy valiosas para Brillia porque la calculadora da el precio al momento, algo que la competencia no suele ofrecer. Merece la pena decirlo en títulos y descripciones ("precio cerrado al momento").
+Las búsquedas de precio son muy valiosas para TUservicio porque la calculadora da el precio al momento, algo que la competencia no suele ofrecer. Merece la pena decirlo en títulos y descripciones ("precio cerrado al momento").
 
 ## Municipios
 
@@ -29,7 +29,7 @@ Hasta entonces, basta con nombrarlos en una sección "Zonas en las que trabajamo
 - **Título y H1**: la búsqueda principal de la página, una vez y de forma natural.
 - **Descripción**: la búsqueda principal y un beneficio. Google suele resaltar en negrita las palabras que coinciden con la búsqueda.
 - **H2**: variantes y búsquedas secundarias ("Precio de la limpieza de pisos en Madrid", "¿Qué incluye la limpieza fin de obra?").
-- **Texto**: sinónimos y preguntas reales. Las preguntas que llegan por WhatsApp o al chat Brilli son una buena fuente de contenido.
+- **Texto**: sinónimos y preguntas reales. Las preguntas que llegan por WhatsApp o al chat de la web son una buena fuente de contenido.
 - **Enlaces internos**: el texto del enlace describe el destino ("limpieza fin de obra en Madrid"), no "pincha aquí".
 
 ## Cómo medir

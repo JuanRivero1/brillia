@@ -1,8 +1,8 @@
-/* ===== Brillia · datos y configuración =====
+/* ===== TUservicio · datos y configuración =====
    Cambia aquí teléfono, email, precios y textos sin tocar la lógica. */
-window.BRILLIA = {
+window.TUSERVICIO = {
   config: {
-    nombre: "Brillia",
+    nombre: "TUservicio",
     telefono: "34649671247",          // sin espacios ni "+", para WhatsApp
     telefonoBonito: "+34 649 671 247",
     email: "info@brilliaes.com",
@@ -21,7 +21,7 @@ window.BRILLIA = {
   nombresFrecuencia: { unica: "una vez", semanal: "cada semana", quincenal: "cada dos semanas", mensual: "cada mes" },
 
   // Tras cambiar servicios o FAQ, ejecuta desde la raíz:
-  //   node .claude/skills/brillia-seo/scripts/sincronizar_html.mjs
+  //   node .claude/skills/tuservicio-seo/scripts/sincronizar_html.mjs
   // para copiarlos al HTML estático y a los datos estructurados de Google.
   servicios: [
     { id: "hogar", icono: "🏠", titulo: "Hogar", texto: "Mantenimiento semanal o puntual: polvo, suelos, baños, cocina y cristales interiores.", desde: 59, destacado: "Más pedido" },
@@ -44,14 +44,14 @@ window.BRILLIA = {
     { p: "¿Tengo que estar en casa durante la limpieza?", r: "No es necesario. Muchos clientes nos dejan llaves o nos abren a distancia. Todo el equipo está identificado, asegurado y con contrato." },
     { p: "¿Traéis vuestros productos y material?", r: "Sí, siempre. Trabajamos con productos ecológicos certificados y aspiradores con filtro HEPA. Si prefieres que usemos los tuyos, dínoslo en las notas." },
     { p: "¿Cómo se paga?", r: "Después del servicio, cuando lo hayas revisado: tarjeta, Bizum o transferencia. Para servicios recurrentes, factura mensual." },
-    { p: "¿Qué pasa si no quedo satisfecho?", r: "Volvemos y lo repasamos sin coste en las siguientes 48 horas. Es nuestra garantía Brillia." },
+    { p: "¿Qué pasa si no quedo satisfecho?", r: "Volvemos y lo repasamos sin coste en las siguientes 48 horas. Es nuestra garantía TUservicio." },
     { p: "¿Puedo cancelar o cambiar la fecha?", r: "Sí, gratis hasta 24 horas antes desde el mismo WhatsApp de confirmación. Con menos antelación se cobra el 50 %." },
     { p: "¿En qué zonas trabajáis?", r: "Madrid capital y municipios a menos de 30 km. Para otras zonas, escríbenos y te decimos si podemos." },
   ],
 
   // Base de conocimiento del chat: palabras clave -> respuesta
   conocimiento: [
-    { claves: ["hola", "buenas", "hey", "hello", "buenos días", "buenas tardes"], respuesta: "¡Hola! 👋 Soy Brilli, la asistente de Brillia. Puedo darte precios, horarios, zonas o ayudarte a reservar. ¿Qué necesitas?", chips: ["¿Cuánto cuesta?", "Reservar", "Zonas"] },
+    { claves: ["hola", "buenas", "hey", "hello", "buenos días", "buenas tardes"], respuesta: "¡Hola! 👋 Soy la asistente de TUservicio. Puedo darte precios, horarios, zonas o ayudarte a reservar. ¿Qué necesitas?", chips: ["¿Cuánto cuesta?", "Reservar", "Zonas"] },
     { claves: ["precio", "cuesta", "cuánto", "cuanto", "tarifa", "presupuesto", "vale"], respuesta: "Nuestros precios orientativos:\n🏠 Hogar desde 59 €\n🏢 Oficina desde 69 €\n🧼 A fondo desde 99 €\n🏗️ Fin de obra desde 149 €\n\nDime los metros cuadrados (por ejemplo «80 m² hogar») y te calculo el precio exacto aquí mismo, o usa la [calculadora](#presupuesto).", chips: ["80 m² hogar", "150 m² oficina", "Ir a la calculadora"] },
     { claves: ["incluye", "incluido", "qué hacéis", "que haceis", "qué entra"], respuesta: "Una limpieza estándar incluye: polvo en todas las superficies, aspirado y fregado de suelos, baños y cocina completos (exterior de electrodomésticos), espejos, y vaciado de papeleras. Los extras (horno y nevera por dentro, cristales, plancha, tapicerías) se añaden en la calculadora. 👍", chips: ["¿Cuánto cuesta?", "Reservar"] },
     { claves: ["horario", "hora", "cuando", "cuándo", "abierto", "domingo", "sábado", "sabado"], respuesta: "Trabajamos de lunes a sábado de 8:00 a 20:00. Puedes elegir franja de mañana, mediodía o tarde al reservar. Los domingos descansamos, pero este chat no 😄", chips: ["Reservar", "¿Cuánto cuesta?"] },
@@ -60,7 +60,7 @@ window.BRILLIA = {
     { claves: ["producto", "productos", "eco", "ecológico", "ecologico", "químico", "quimico", "alergia", "mascota", "perro", "gato", "bebé", "bebe"], respuesta: "Usamos solo productos ecológicos con certificado Ecolabel, seguros para niños, mascotas y personas con alergias. Y aspiradores con filtro HEPA que atrapan el polvo en vez de levantarlo. 🌿", chips: ["¿Cuánto cuesta?", "Reservar"] },
     { claves: ["pago", "pagar", "tarjeta", "bizum", "efectivo", "factura"], respuesta: "Pagas después del servicio, cuando lo hayas revisado: tarjeta, Bizum o transferencia. Siempre con factura. Para servicios recurrentes, una única factura al mes.", chips: ["Reservar"] },
     { claves: ["cancelar", "cancelación", "cancelacion", "cambiar", "anular", "modificar"], respuesta: "Puedes cancelar o cambiar la fecha gratis hasta 24 h antes, desde el WhatsApp de confirmación. Con menos antelación se cobra el 50 %.", chips: ["Reservar", "Horario"] },
-    { claves: ["seguro", "garantía", "garantia", "rotura", "confianza", "fiable"], respuesta: "Todo el equipo tiene contrato, seguro de responsabilidad civil y está identificado. Y si algo no queda a tu gusto, volvemos a repasarlo gratis en 48 h. Esa es la garantía Brillia. 🛡️", chips: ["Reservar", "¿Cuánto cuesta?"] },
+    { claves: ["seguro", "garantía", "garantia", "rotura", "confianza", "fiable"], respuesta: "Todo el equipo tiene contrato, seguro de responsabilidad civil y está identificado. Y si algo no queda a tu gusto, volvemos a repasarlo gratis en 48 h. Esa es la garantía TUservicio. 🛡️", chips: ["Reservar", "¿Cuánto cuesta?"] },
     { claves: ["llaves", "estar en casa", "en casa", "presente"], respuesta: "No necesitas estar en casa. Puedes dejarnos llaves, una caja de seguridad o abrirnos a distancia. Te mandamos foto al terminar. 📸", chips: ["Reservar"] },
     { claves: ["tiempo", "dura", "duración", "duracion", "tarda", "tardan"], respuesta: "Depende de los metros: un piso de 80 m² son unas 3 horas con una profesional; una oficina de 150 m², unas 4 h. En la [calculadora](#presupuesto) te sale la duración exacta junto al precio.", chips: ["Ir a la calculadora"] },
     { claves: ["humano", "persona", "llamar", "teléfono", "telefono", "whatsapp", "contacto", "hablar"], respuesta: "Claro, puedes hablar con una persona del equipo por [WhatsApp](whatsapp) o llamar al +34 649 671 247 de lunes a sábado.", chips: ["WhatsApp"] },

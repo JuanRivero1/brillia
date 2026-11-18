@@ -1,4 +1,4 @@
-# Plantillas SEO para Brillia
+# Plantillas SEO para TUservicio
 
 Contenido:
 1. Títulos y descripciones
@@ -18,16 +18,16 @@ El título lleva servicio + zona + marca, en unos 50–60 caracteres. La descrip
 
 | Página | Título | Descripción |
 |---|---|---|
-| Inicio | `Empresa de limpieza en Madrid · Hogares y oficinas · Brillia` | `Limpieza profesional de pisos, oficinas y fin de obra en Madrid. Precio cerrado al momento, productos ecológicos y reserva por WhatsApp en 1 minuto.` |
-| Pisos | `Limpieza de pisos en Madrid desde {{precio}} € · Brillia` | `Limpieza de pisos y casas en Madrid, puntual o semanal. Mismo equipo en cada visita, material incluido y precio cerrado. Pide presupuesto por WhatsApp.` |
-| Fin de obra | `Limpieza fin de obra en Madrid · Lista para entrar · Brillia` | `Quitamos polvo de obra, restos de pintura y silicona para que entres a vivir el mismo día. Presupuesto cerrado en Madrid y alrededores.` |
+| Inicio | `Empresa de limpieza en Madrid · Hogares y oficinas · TUservicio` | `Limpieza profesional de pisos, oficinas y fin de obra en Madrid. Precio cerrado al momento, productos ecológicos y reserva por WhatsApp en 1 minuto.` |
+| Pisos | `Limpieza de pisos en Madrid desde {{precio}} € · TUservicio` | `Limpieza de pisos y casas en Madrid, puntual o semanal. Mismo equipo en cada visita, material incluido y precio cerrado. Pide presupuesto por WhatsApp.` |
+| Fin de obra | `Limpieza fin de obra en Madrid · Lista para entrar · TUservicio` | `Quitamos polvo de obra, restos de pintura y silicona para que entres a vivir el mismo día. Presupuesto cerrado en Madrid y alrededores.` |
 | Oficinas | `Limpieza de oficinas en Madrid · Antes de que llegue tu equipo` | `Limpieza de oficinas y locales en Madrid a primera hora o al cierre. Contrato flexible, factura mensual y mismo equipo cada semana.` |
 
 El H1 puede conservar el tono de marca siempre que incluya el qué. Por ejemplo: `Limpieza profesional en Madrid: tu casa, como nueva`.
 
 ## 2. JSON-LD: negocio local
 
-En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`; esta plantilla sirve para entender la estructura o para cambiar el script. `CleaningService` es el tipo de schema.org para empresas de limpieza. Brillia no tiene local abierto al público: usa `areaServed` para las zonas y deja en `address` solo localidad, región y país, salvo que el usuario dé una dirección fiscal que quiera mostrar.
+En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`; esta plantilla sirve para entender la estructura o para cambiar el script. `CleaningService` es el tipo de schema.org para empresas de limpieza. TUservicio no tiene local abierto al público: usa `areaServed` para las zonas y deja en `address` solo localidad, región y país, salvo que el usuario dé una dirección fiscal que quiera mostrar.
 
 ```html
 <script type="application/ld+json">
@@ -35,10 +35,10 @@ En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`;
   "@context": "https://schema.org",
   "@type": "CleaningService",
   "@id": "https://brilliaes.com/#empresa",
-  "name": "Brillia",
+  "name": "TUservicio",
   "url": "https://brilliaes.com/",
   "logo": "https://brilliaes.com/assets/favicon.svg",
-  "image": "https://brilliaes.com/assets/og-brillia.jpg",
+  "image": "https://brilliaes.com/assets/og-tuservicio.jpg",
   "description": "Empresa de limpieza profesional en Madrid: hogares, oficinas, fin de obra y limpiezas a fondo con productos ecológicos.",
   "telephone": "+34{{telefono}}",
   "email": "{{email}}",
@@ -80,7 +80,7 @@ En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`;
 - Añade un `Offer` por cada servicio de `D.servicios`, con su precio `desde`.
 - Rellena `sameAs` con las URLs de la ficha de Google Business, Instagram, etc., solo cuando existan.
 - No añadas `aggregateRating` ni `review` salvo que haya opiniones reales y verificables (ver SKILL.md, "Datos reales").
-- Si `og-brillia.jpg` no existe todavía, quita `image` o créala antes (ver sección 5).
+- Si `og-tuservicio.jpg` no existe todavía, quita `image` o créala antes (ver sección 5).
 
 ## 3. JSON-LD: preguntas frecuentes
 
@@ -126,26 +126,26 @@ Desde 2023 Google solo muestra el desplegable de FAQ en los resultados de webs o
 ## 5. Open Graph y Twitter
 
 ```html
-<meta property="og:site_name" content="Brillia">
+<meta property="og:site_name" content="TUservicio">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image" content="https://brilliaes.com/assets/og-brillia.jpg">
+<meta property="og:image" content="https://brilliaes.com/assets/og-tuservicio.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Brillia, limpieza profesional en Madrid">
+<meta property="og:image:alt" content="TUservicio, limpieza profesional en Madrid">
 <meta name="twitter:card" content="summary_large_image">
 ```
 
-La imagen debe ser JPG o PNG de 1200×630, de menos de 300 KB, con la URL absoluta. WhatsApp no muestra SVG. La actual se genera desde `assets/og-brillia.html` de la skill; edita ese HTML (lema, teléfono, colores) y regenérala desde la raíz del repo. La captura se hace en el scratchpad y luego se convierte a JPG en `assets/`:
+La imagen debe ser JPG o PNG de 1200×630, de menos de 300 KB, con la URL absoluta. WhatsApp no muestra SVG. La actual se genera desde `assets/og-tuservicio.html` de la skill; edita ese HTML (lema, teléfono, colores) y regenérala desde la raíz del repo. La captura se hace en el scratchpad y luego se convierte a JPG en `assets/`:
 
 ```bash
-SK=.claude/skills/brillia-seo/assets
-google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --virtual-time-budget=6000 --screenshot=/ruta/scratchpad/og.png "file://$PWD/$SK/og-brillia.html"
-python3 -c "from PIL import Image; Image.open('/ruta/scratchpad/og.png').convert('RGB').save('assets/og-brillia.jpg', quality=85, optimize=True, progressive=True)"
+SK=.claude/skills/tuservicio-seo/assets
+google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --virtual-time-budget=6000 --screenshot=/ruta/scratchpad/og.png "file://$PWD/$SK/og-tuservicio.html"
+python3 -c "from PIL import Image; Image.open('/ruta/scratchpad/og.png').convert('RGB').save('assets/og-tuservicio.jpg', quality=85, optimize=True, progressive=True)"
 ```
 
 El logo de 512×512 (`assets/logo-512.png`, usado en el JSON-LD y como icono) sale igual de `logo-512.html`, con `--window-size=512,512` y guardando en PNG.
 
-Para una página de servicio, puedes hacer una imagen propia copiando `og-brillia.html` y cambiando el texto (por ejemplo `og-fin-de-obra.jpg`).
+Para una página de servicio, puedes hacer una imagen propia copiando `og-tuservicio.html` y cambiando el texto (por ejemplo `og-fin-de-obra.jpg`).
 
 ## 6. robots.txt
 

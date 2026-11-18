@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Auditoría SEO de la web de Brillia.
+"""Auditoría SEO de la web de TUservicio.
 
 Uso:
     python3 auditar_seo.py https://brilliaes.com
@@ -21,7 +21,7 @@ import urllib.request
 from html.parser import HTMLParser
 from urllib.parse import urljoin, urlparse
 
-AGENTE = "Mozilla/5.0 (compatible; BrilliaSEOAudit/1.0)"
+AGENTE = "Mozilla/5.0 (compatible; TUservicioSEOAudit/1.0)"
 DOMINIO_PRINCIPAL = "brilliaes.com"
 # Contenedores que js/main.js rellena en el navegador; si llegan vacíos en el HTML,
 # su contenido solo existe para quien ejecuta JavaScript.

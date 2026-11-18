@@ -23,7 +23,7 @@ dig +short TXT brilliaes.com @ns1040.ui-dns.com
 
 Es lo que más clientes trae a un negocio local.
 
-1. Crear la ficha en https://business.google.com con el nombre exacto **Brillia**. Sin añadidos tipo "Brillia Limpiezas Madrid Baratas": Google lo considera spam y puede suspender la ficha.
+1. Crear la ficha en https://business.google.com con el nombre exacto **TUservicio**. Sin añadidos tipo "TUservicio Limpiezas Madrid Baratas": Google lo considera spam y puede suspender la ficha.
 2. Categoría principal: **Servicio de limpieza** o **Servicio de limpieza de casas**. Secundarias: Servicio de limpieza de oficinas, Servicio de limpieza tras obras.
 3. Marcar que es un negocio de **área de servicio**, que va a casa del cliente, y ocultar la dirección si no hay local abierto al público. Zonas: Madrid y los municipios donde de verdad trabaja.
 4. Teléfono, web (`https://brilliaes.com`), horario y servicios con precio "desde", idénticos a la web.
@@ -38,7 +38,7 @@ Las opiniones reales en Google son lo que más pesa en el mapa local, y lo que c
 
 - Pedirlas al terminar cada servicio, por WhatsApp, con el enlace directo para dejar reseña que da la propia ficha ("Pedir reseñas"). Ofrécele al usuario un mensaje listo, por ejemplo:
 
-  > ¡Gracias por confiar en Brillia! Si te ha gustado cómo ha quedado tu casa, nos ayudarías muchísimo dejando tu opinión aquí: {{enlace}}. ¡Que brille tu día! ✨
+  > ¡Gracias por confiar en TUservicio! Si te ha gustado cómo ha quedado tu casa, nos ayudarías muchísimo dejando tu opinión aquí: {{enlace}}. ¡Que brille tu día! ✨
 
 - Responder a todas, también a las negativas, con educación y una solución.
 - Nunca comprar opiniones, ni escribirlas, ni ofrecer descuentos a cambio de 5 estrellas. Google las elimina y puede penalizar la ficha.
@@ -46,7 +46,7 @@ Las opiniones reales en Google son lo que más pesa en el mapa local, y lo que c
 
 ## 4. Coherencia de datos (NAP)
 
-Nombre, dirección y teléfono deben ser idénticos en la web, la ficha de Google, los directorios y las redes. Valores actuales, tomados de `js/datos.js`: Brillia · Madrid · +34 649 671 247 · info@brilliaes.com. Si alguno cambia, cámbialo en todas partes a la vez.
+Nombre, dirección y teléfono deben ser idénticos en la web, la ficha de Google, los directorios y las redes. Valores actuales, tomados de `js/datos.js`: TUservicio · Madrid · +34 649 671 247 · info@brilliaes.com. Si alguno cambia, cámbialo en todas partes a la vez.
 
 ## 5. Directorios y enlaces
 
@@ -54,6 +54,6 @@ Enlaces desde webs locales y de confianza ayudan, pero mucho menos que la ficha 
 
 1. Directorios generales con ficha gratuita: Páginas Amarillas, Bing Places (se puede importar desde Google Business) y Apple Business Connect (para Apple Maps).
 2. Plataformas de servicios del sector donde se puedan conseguir opiniones reales.
-3. Colaboraciones locales: inmobiliarias, administradores de fincas o empresas de reformas que recomienden a Brillia para limpiezas de fin de obra y mudanzas.
+3. Colaboraciones locales: inmobiliarias, administradores de fincas o empresas de reformas que recomienden a TUservicio para limpiezas de fin de obra y mudanzas.
 
 Evitar directorios de baja calidad y paquetes de "cientos de enlaces": no ayudan y pueden perjudicar.
