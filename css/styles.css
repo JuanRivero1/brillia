@@ -268,6 +268,9 @@ input[type="range"]:active { cursor: grabbing; }
 .reserva { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3rem; align-items: center; }
 .reserva h2 { color: #fff; }
 .garantias { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: .6rem; color: rgba(255,255,255,.9); }
+.reserva__contacto { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.6rem; }
+.btn--whatsapp { background: #25d366; color: #fff; box-shadow: 0 14px 30px -12px rgba(37,211,102,.7); }
+.btn--whatsapp:hover { background: #1fbe5b; }
 .formulario { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(10px); border-radius: 24px; padding: 1.6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .campo { display: grid; gap: .35rem; }
 .campo--ancho { grid-column: 1 / -1; }

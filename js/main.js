@@ -341,6 +341,9 @@
   $("#pieTelefono").textContent = D.config.telefonoBonito; $("#pieTelefono").href = `tel:+${D.config.telefono}`;
   $("#pieEmail").textContent = D.config.email; $("#pieEmail").href = `mailto:${D.config.email}`;
   $("#whatsappFlotante").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola Brillia 👋, quiero información sobre una limpieza.")}`;
+  $("#reservaWhatsapp").href = `https://wa.me/${D.config.telefono}?text=${encodeURIComponent("Hola Brillia 👋, quiero reservar una limpieza.")}`;
+  $("#reservaWhatsapp").textContent = `WhatsApp ${D.config.telefonoBonito.replace("+34 ", "")}`;
+  $("#reservaLlamar").href = `tel:+${D.config.telefono}`;
   $("#anio").textContent = new Date().getFullYear();
 
   /* ---------- Toast y confeti ---------- */
