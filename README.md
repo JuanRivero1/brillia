@@ -51,7 +51,7 @@ El proyecto está pensado para Vercel: al importar el repositorio no hace falta 
 La skill de Claude Code `.claude/skills/tuservicio-seo/` recoge cómo auditar y mejorar el posicionamiento de la web: script de auditoría, plantillas (títulos, JSON-LD, robots.txt, sitemap, páginas de servicio), mapa de palabras clave y guía de Search Console y Google Business. Para auditar a mano:
 
 ```bash
-python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py https://brilliaes.com
+python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py https://tuservicioes.com
 ```
 
 La carpeta `.claude/` y este README no se publican en la web (ver `.vercelignore`).

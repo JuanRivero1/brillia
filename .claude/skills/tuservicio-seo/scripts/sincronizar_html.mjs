@@ -21,7 +21,7 @@ import vm from "node:vm";
 
 const RAIZ = process.cwd();
 const HTML = `${RAIZ}/index.html`;
-const URL_BASE = "https://brilliaes.com";
+const URL_BASE = "https://tuservicioes.com";
 // Horario de atención. Si cambia, cámbialo aquí, en el pie de index.html y en config.horario de datos.js.
 const HORARIO = { dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], abre: "08:00", cierra: "20:00" };
 

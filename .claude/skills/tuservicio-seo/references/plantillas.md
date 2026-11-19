@@ -34,11 +34,11 @@ En `index.html` ya lo genera `scripts/sincronizar_html.mjs` desde `js/datos.js`;
 {
   "@context": "https://schema.org",
   "@type": "CleaningService",
-  "@id": "https://brilliaes.com/#empresa",
+  "@id": "https://tuservicioes.com/#empresa",
   "name": "TUservicio",
-  "url": "https://brilliaes.com/",
-  "logo": "https://brilliaes.com/assets/favicon.svg",
-  "image": "https://brilliaes.com/assets/og-tuservicio.jpg",
+  "url": "https://tuservicioes.com/",
+  "logo": "https://tuservicioes.com/assets/favicon.svg",
+  "image": "https://tuservicioes.com/assets/og-tuservicio.jpg",
   "description": "Empresa de limpieza profesional en Madrid: hogares, oficinas, fin de obra y limpiezas a fondo con productos ecológicos.",
   "telephone": "+34{{telefono}}",
   "email": "{{email}}",
@@ -113,8 +113,8 @@ Desde 2023 Google solo muestra el desplegable de FAQ en los resultados de webs o
   "@type": "Service",
   "serviceType": "Limpieza fin de obra",
   "name": "Limpieza fin de obra en Madrid",
-  "url": "https://brilliaes.com/limpieza-fin-de-obra-madrid",
-  "provider": { "@id": "https://brilliaes.com/#empresa" },
+  "url": "https://tuservicioes.com/limpieza-fin-de-obra-madrid",
+  "provider": { "@id": "https://tuservicioes.com/#empresa" },
   "areaServed": { "@type": "City", "name": "Madrid" },
   "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "{{desde}}", "description": "Precio desde, IVA incluido" }
 }
@@ -128,7 +128,7 @@ Desde 2023 Google solo muestra el desplegable de FAQ en los resultados de webs o
 ```html
 <meta property="og:site_name" content="TUservicio">
 <meta property="og:locale" content="es_ES">
-<meta property="og:image" content="https://brilliaes.com/assets/og-tuservicio.jpg">
+<meta property="og:image" content="https://tuservicioes.com/assets/og-tuservicio.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="TUservicio, limpieza profesional en Madrid">
@@ -155,7 +155,7 @@ En la raíz del repo:
 User-agent: *
 Allow: /
 
-Sitemap: https://brilliaes.com/sitemap.xml
+Sitemap: https://tuservicioes.com/sitemap.xml
 ```
 
 ## 7. sitemap.xml
@@ -166,7 +166,7 @@ En la raíz del repo. Una entrada por página pública, con la URL limpia (sin `
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://brilliaes.com/</loc>
+    <loc>https://tuservicioes.com/</loc>
     <lastmod>{{AAAA-MM-DD}}</lastmod>
   </url>
 </urlset>

@@ -1,13 +1,13 @@
 ---
 name: tuservicio-seo
-description: Gestiona el posicionamiento SEO de la web de TUservicio (brilliaes.com), la empresa de limpieza en Madrid. Audita la página, corrige títulos, descripciones, encabezados, datos estructurados, robots.txt y sitemap, crea páginas de servicio orientadas a búsquedas locales y verifica el resultado en producción. Úsala siempre que el usuario hable de SEO, posicionamiento, Google, salir en buscadores, palabras clave, Search Console, ficha de Google Business, visitas orgánicas, "que me encuentren", meta descripciones, sitemap o nuevas páginas para captar clientes, aunque no diga "SEO" de forma explícita.
+description: Gestiona el posicionamiento SEO de la web de TUservicio (tuservicioes.com), la empresa de limpieza en Madrid. Audita la página, corrige títulos, descripciones, encabezados, datos estructurados, robots.txt y sitemap, crea páginas de servicio orientadas a búsquedas locales y verifica el resultado en producción. Úsala siempre que el usuario hable de SEO, posicionamiento, Google, salir en buscadores, palabras clave, Search Console, ficha de Google Business, visitas orgánicas, "que me encuentren", meta descripciones, sitemap o nuevas páginas para captar clientes, aunque no diga "SEO" de forma explícita.
 ---
 
 # SEO de TUservicio
 
-TUservicio es una empresa de limpieza de Madrid con una web estática de una sola página: HTML, CSS y JavaScript sin frameworks ni build, en la raíz del repo. Se despliega sola en Vercel con cada `git push` a `main` y se sirve en https://brilliaes.com. Su objetivo es que alguien en Madrid que busque "limpieza de pisos", "limpieza fin de obra" o "empresa de limpieza cerca de mí" encuentre TUservicio y le escriba por WhatsApp.
+TUservicio es una empresa de limpieza de Madrid con una web estática de una sola página: HTML, CSS y JavaScript sin frameworks ni build, en la raíz del repo. Se despliega sola en Vercel con cada `git push` a `main` y se sirve en https://tuservicioes.com. Su objetivo es que alguien en Madrid que busque "limpieza de pisos", "limpieza fin de obra" o "empresa de limpieza cerca de mí" encuentre TUservicio y le escriba por WhatsApp.
 
-> **Cambio de marca en curso (18 nov 2026).** La empresa se llamaba Brillia y pasa a llamarse TUservicio. La marca ya está cambiada en la rama `tuservicio`, pero el dominio sigue siendo `brilliaes.com` hasta que el usuario compre el nuevo. Cuando lo tenga, sustituye `brilliaes.com` en todo el repo (`git grep -l brilliaes.com`), incluido el email `info@brilliaes.com` si cambia, vuelve a ejecutar `sincronizar_html.mjs`, une la rama a `main` y añade el dominio nuevo al proyecto de Vercel.
+> **Cambio de marca (19 nov 2026).** La empresa se llamaba Brillia (dominio `brilliaes.com`, en IONOS). Ahora es TUservicio en `tuservicioes.com`, con el DNS en Wix. El email sigue siendo `info@brilliaes.com` porque el dominio nuevo aún no tiene correo; cuando lo tenga, cámbialo en `js/datos.js`, `index.html` y `references/fuera-de-pagina.md` y ejecuta `sincronizar_html.mjs`.
 
 Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 
@@ -39,7 +39,7 @@ Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 Ejecuta el script de auditoría. Funciona contra producción o contra el servidor local:
 
 ```bash
-python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py https://brilliaes.com
+python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py https://tuservicioes.com
 python3 .claude/skills/tuservicio-seo/scripts/auditar_seo.py http://localhost:8030
 ```
 
@@ -88,15 +88,15 @@ Plantilla de página en `references/plantillas.md`.
 2. Comprueba que producción sirve tu versión comparando archivos:
 
    ```bash
-   for f in index.html robots.txt sitemap.xml; do r=$(curl -sL https://brilliaes.com/$f | sha1sum | cut -d' ' -f1); l=$(sha1sum < $f | cut -d' ' -f1); [ "$r" = "$l" ] && echo "OK $f" || echo "DIFF $f"; done
+   for f in index.html robots.txt sitemap.xml; do r=$(curl -sL https://tuservicioes.com/$f | sha1sum | cut -d' ' -f1); l=$(sha1sum < $f | cut -d' ' -f1); [ "$r" = "$l" ] && echo "OK $f" || echo "DIFF $f"; done
    ```
 
-3. Vuelve a ejecutar la auditoría contra `https://brilliaes.com`.
+3. Vuelve a ejecutar la auditoría contra `https://tuservicioes.com`.
 4. Si el usuario ya tiene Search Console, recuérdale pedir la indexación de las URLs nuevas o reenviar el sitemap.
 
 ### 5. Fuera de la página
 
-Para un negocio local, la ficha de Google Business y las opiniones pesan tanto como la web. Guía al usuario con `references/fuera-de-pagina.md`: verificar el dominio en Search Console con un registro TXT en IONOS, crear la ficha de Google Business, pedir opiniones a clientes reales y mantener nombre, dirección y teléfono idénticos en todas partes. Estas acciones se hacen en las cuentas del usuario: prepárale los textos y los valores exactos, pero no inicies sesión ni metas contraseñas por él.
+Para un negocio local, la ficha de Google Business y las opiniones pesan tanto como la web. Guía al usuario con `references/fuera-de-pagina.md`: verificar el dominio en Search Console con un registro TXT en Wix, crear la ficha de Google Business, pedir opiniones a clientes reales y mantener nombre, dirección y teléfono idénticos en todas partes. Estas acciones se hacen en las cuentas del usuario: prepárale los textos y los valores exactos, pero no inicies sesión ni metas contraseñas por él.
 
 ## Datos reales
 
@@ -113,4 +113,4 @@ Nunca pongas `aggregateRating` ni `review` en JSON-LD con opiniones inventadas. 
 - No rellenes textos de palabras clave repetidas ni escondas texto. Escribe para personas que buscan limpieza en Madrid; Google premia eso.
 - No cambies el diseño, los colores ni las secciones existentes salvo que el SEO lo requiera; y entonces explica por qué.
 - No toques la calculadora ni las tarifas de `js/datos.js` para el SEO. Si una página nueva cita precios, léelos de ahí.
-- No borres el `canonical` ni cambies el dominio principal (`brilliaes.com` sin `www`).
+- No borres el `canonical` ni cambies el dominio principal (`tuservicioes.com` sin `www`).

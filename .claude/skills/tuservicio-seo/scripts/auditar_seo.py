@@ -2,9 +2,9 @@
 """Auditoría SEO de la web de TUservicio.
 
 Uso:
-    python3 auditar_seo.py https://brilliaes.com
+    python3 auditar_seo.py https://tuservicioes.com
     python3 auditar_seo.py http://localhost:8030
-    python3 auditar_seo.py https://brilliaes.com/limpieza-fin-de-obra-madrid
+    python3 auditar_seo.py https://tuservicioes.com/limpieza-fin-de-obra-madrid
 
 Solo lee: descarga la página y los archivos técnicos (robots.txt, sitemap.xml)
 y escribe un informe en Markdown por la salida estándar. Usa solo la biblioteca
@@ -22,7 +22,7 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urlparse
 
 AGENTE = "Mozilla/5.0 (compatible; TUservicioSEOAudit/1.0)"
-DOMINIO_PRINCIPAL = "brilliaes.com"
+DOMINIO_PRINCIPAL = "tuservicioes.com"
 # Contenedores que js/main.js rellena en el navegador; si llegan vacíos en el HTML,
 # su contenido solo existe para quien ejecuta JavaScript.
 CONTENEDORES_JS = {
