@@ -7,7 +7,7 @@ description: Gestiona el posicionamiento SEO de la web de TUservicio (tuservicio
 
 TUservicio es una empresa de limpieza de Madrid con una web estática de una sola página: HTML, CSS y JavaScript sin frameworks ni build, en la raíz del repo. Se despliega sola en Vercel con cada `git push` a `main` y se sirve en https://tuservicioes.com. Su objetivo es que alguien en Madrid que busque "limpieza de pisos", "limpieza fin de obra" o "empresa de limpieza cerca de mí" encuentre TUservicio y le escriba por WhatsApp.
 
-> **Cambio de marca (19 nov 2026).** La empresa se llamaba Brillia (dominio `brilliaes.com`, en IONOS). Ahora es TUservicio en `tuservicioes.com`, con el DNS en Wix. El email sigue siendo `info@brilliaes.com` porque el dominio nuevo aún no tiene correo; cuando lo tenga, cámbialo en `js/datos.js`, `index.html` y `references/fuera-de-pagina.md` y ejecuta `sincronizar_html.mjs`.
+> **Cambio de marca (19 nov 2026).** La empresa se llamaba Brillia (dominio `brilliaes.com`, en IONOS). Ahora es TUservicio en `tuservicioes.com`, registrado en Wix el 19 nov 2026, que también gestiona su DNS. El usuario quiere transferirlo a IONOS cuando pase el bloqueo de 60 días (hacia el 18 ene 2027); entonces hay que recrear en IONOS los registros A y CNAME que apuntan a Vercel. El email de contacto es `infotuservicioes@gmail.com`; si cambia, cámbialo en `js/datos.js`, `index.html` y `references/fuera-de-pagina.md` y ejecuta `sincronizar_html.mjs`.
 
 Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 

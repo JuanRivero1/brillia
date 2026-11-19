@@ -46,7 +46,7 @@ Las opiniones reales en Google son lo que más pesa en el mapa local, y lo que c
 
 ## 4. Coherencia de datos (NAP)
 
-Nombre, dirección y teléfono deben ser idénticos en la web, la ficha de Google, los directorios y las redes. Valores actuales, tomados de `js/datos.js`: TUservicio · Madrid · +34 649 671 247 · info@brilliaes.com. Si alguno cambia, cámbialo en todas partes a la vez.
+Nombre, dirección y teléfono deben ser idénticos en la web, la ficha de Google, los directorios y las redes. Valores actuales, tomados de `js/datos.js`: TUservicio · Madrid · +34 649 671 247 · infotuservicioes@gmail.com. Si alguno cambia, cámbialo en todas partes a la vez.
 
 ## 5. Directorios y enlaces
 

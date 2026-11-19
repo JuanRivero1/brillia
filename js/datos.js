@@ -5,7 +5,7 @@ window.TUSERVICIO = {
     nombre: "TUservicio",
     telefono: "34649671247",          // sin espacios ni "+", para WhatsApp
     telefonoBonito: "+34 649 671 247",
-    email: "info@brilliaes.com",
+    email: "infotuservicioes@gmail.com",
     ciudad: "Madrid y alrededores",
     horario: "lunes a sábado de 8:00 a 20:00",
   },
@@ -65,6 +65,6 @@ window.TUSERVICIO = {
     { claves: ["tiempo", "dura", "duración", "duracion", "tarda", "tardan"], respuesta: "Depende de los metros: un piso de 80 m² son unas 3 horas con una profesional; una oficina de 150 m², unas 4 h. En la [calculadora](#presupuesto) te sale la duración exacta junto al precio.", chips: ["Ir a la calculadora"] },
     { claves: ["humano", "persona", "llamar", "teléfono", "telefono", "whatsapp", "contacto", "hablar"], respuesta: "Claro, puedes hablar con una persona del equipo por [WhatsApp](whatsapp) o llamar al +34 649 671 247 de lunes a sábado.", chips: ["WhatsApp"] },
     { claves: ["gracias", "perfecto", "genial", "vale", "ok"], respuesta: "¡A ti! 😊 Si necesitas algo más, aquí estoy. ¡Que brille tu día!", chips: ["Reservar", "¿Cuánto cuesta?"] },
-    { claves: ["trabajo", "empleo", "trabajar", "curriculum", "cv", "vacante"], respuesta: "¡Nos encanta que quieras unirte! Envíanos tu CV a info@brilliaes.com con el asunto «Quiero brillar» y te contestamos en una semana.", chips: [] },
+    { claves: ["trabajo", "empleo", "trabajar", "curriculum", "cv", "vacante"], respuesta: "¡Nos encanta que quieras unirte! Envíanos tu CV a infotuservicioes@gmail.com con el asunto «Quiero brillar» y te contestamos en una semana.", chips: [] },
   ],
 };
