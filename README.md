@@ -50,6 +50,10 @@ El proyecto está pensado para Vercel: al importar el repositorio no hace falta 
 - Repositorio: `JuanRivero1/tuservicio` en GitHub. Cada push a `main` se publica solo en el proyecto `tuservicio` de Vercel.
 - DNS del dominio: en Wix, con registros A `@` → `216.198.79.1` y `64.29.17.1` y CNAME `www` → `abba3ceef78d0c5b.vercel-dns-017.com`.
 
+## Marca
+
+Logo, colores, tipografía y tono están en la skill `.claude/skills/tuservicio-marca/`: guía en `references/marca.md`, manual visual en `manual-de-marca.html` y scripts para regenerar los logos. Los archivos finales están en `assets/marca/`.
+
 ## SEO
 
 La skill de Claude Code `.claude/skills/tuservicio-seo/` recoge cómo auditar y mejorar el posicionamiento de la web: script de auditoría, plantillas (títulos, JSON-LD, robots.txt, sitemap, páginas de servicio), mapa de palabras clave y guía de Search Console y Google Business. Para auditar a mano:

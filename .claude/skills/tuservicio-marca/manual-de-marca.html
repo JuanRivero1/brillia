@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual de marca · TUservicio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --turquesa-oscuro: #0f766e; --turquesa: #0ea5a4; --turquesa-claro: #14b8a6; --menta: #5eead4;
+    --lima: #a3e635; --tinta: #0f172a; --pizarra: #475569; --niebla: #f8fafc; --noche: #0b1b2b;
+    --borde: #e2e8f0; --m: url("../../../assets/marca/");
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--tinta); background: var(--niebla); line-height: 1.6; }
+  h1, h2, h3 { font-family: Outfit, sans-serif; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 .5em; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; }
+  h3 { font-size: 1.15rem; font-weight: 700; }
+  p { margin: 0 0 1em; max-width: 68ch; }
+  .envoltura { width: min(1100px, 100% - 32px); margin-inline: auto; }
+  section { padding: 72px 0; border-bottom: 1px solid var(--borde); }
+  .num { font-family: Outfit; font-weight: 600; color: var(--turquesa-oscuro); letter-spacing: .18em; font-size: .8rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
+  .rejilla { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .tarjeta { background: #fff; border: 1px solid var(--borde); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 14px; justify-content: space-between; }
+  .tarjeta--oscura { background: var(--noche); border-color: var(--noche); color: #e5eefb; }
+  .tarjeta--turquesa { background: linear-gradient(135deg, var(--turquesa-claro), var(--turquesa-oscuro)); border: 0; color: #fff; }
+  .lienzo { min-height: 150px; display: grid; place-items: center; }
+  .pie { font-size: .85rem; color: var(--pizarra); }
+  .tarjeta--oscura .pie, .tarjeta--turquesa .pie { color: inherit; opacity: .8; }
+  code { font-size: .85em; background: #eef2f6; padding: 2px 6px; border-radius: 6px; }
+  .tarjeta--oscura code { background: #1f2d44; }
+  .tarjeta--turquesa code { background: rgba(255,255,255,.18); color: #fff; }
+
+  /* Portada */
+  .portada { min-height: min(88vh, 760px); display: grid; place-items: center; text-align: center; background:
+      radial-gradient(600px 400px at 15% 10%, rgba(94,234,212,.45), transparent 70%),
+      radial-gradient(500px 380px at 90% 90%, rgba(163,230,53,.28), transparent 70%), var(--niebla); border: 0; }
+  .portada img { width: min(420px, 80vw); }
+  .portada .subt { font-family: Outfit; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--turquesa-oscuro); margin-top: 28px; }
+
+  /* Construcción */
+  .construccion { position: relative; width: 260px; height: 260px; }
+  .construccion img { width: 100%; height: 100%; }
+  .construccion svg { position: absolute; inset: 0; }
+
+  /* Zona de respeto */
+  .respeto { position: relative; padding: 40px; outline: 2px dashed var(--turquesa); outline-offset: -2px; border-radius: 8px; background: repeating-linear-gradient(45deg, rgba(14,165,164,.06) 0 8px, transparent 8px 16px); }
+  .respeto img { display: block; height: 80px; background: var(--niebla); }
+
+  /* Incorrectos */
+  .mal { position: relative; }
+  .mal .lienzo { overflow: hidden; }
+  .mal .lienzo img { height: 40px; max-width: 100%; }
+  .mal::after { content: "✕"; position: absolute; top: 14px; right: 18px; font-weight: 700; color: #dc2626; font-size: 1.2rem; }
+
+  /* Color */
+  .muestra { border-radius: 18px; overflow: hidden; border: 1px solid var(--borde); background: #fff; }
+  .muestra__color { height: 120px; display: flex; align-items: flex-end; padding: 14px; font-family: Outfit; font-weight: 700; font-size: 1.1rem; }
+  .muestra__datos { padding: 14px 16px; font-size: .85rem; color: var(--pizarra); }
+  .muestra__datos strong { color: var(--tinta); display: block; font-size: .95rem; }
+  .barra { display: flex; height: 54px; border-radius: 999px; overflow: hidden; margin-top: 24px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 18px; overflow: hidden; border: 1px solid var(--borde); font-size: .92rem; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--borde); }
+  th { font-family: Outfit; font-weight: 600; background: #f1f5f9; }
+  .chip { display: inline-block; padding: 4px 12px; border-radius: 999px; font-weight: 600; font-size: .85rem; }
+  .ok { color: #166534; } .ko { color: #b91c1c; } .medio { color: #a16207; }
+
+  /* Tipografía */
+  .tipo-grande { font-family: Outfit; font-weight: 800; font-size: clamp(3rem, 9vw, 6rem); line-height: 1; letter-spacing: -.03em; }
+  .alfabeto { font-family: Outfit; font-size: 1.4rem; letter-spacing: .02em; word-break: break-all; color: var(--pizarra); }
+  .inter .tipo-grande, .inter .alfabeto { font-family: Inter; }
+  .jerarquia > * { margin: 0 0 .3em; }
+
+  /* Elementos */
+  .btn { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.5rem; border-radius: 999px; font-weight: 600; font-family: Outfit; font-size: 1.05rem; border: 2px solid transparent; }
+  .btn--primario { background: linear-gradient(135deg, var(--turquesa), var(--turquesa-oscuro)); color: #fff; box-shadow: 0 24px 60px -20px rgba(14,165,164,.45); }
+  .btn--fantasma { background: #fff; border-color: var(--borde); }
+  .etiqueta { background: var(--lima); color: var(--tinta); }
+
+  /* Voz */
+  .voz { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .burbuja { padding: 18px 20px; border-radius: 18px; font-size: 1.05rem; }
+  .burbuja--si { background: #ecfdf5; border: 1px solid #a7f3d0; }
+  .burbuja--no { background: #fef2f2; border: 1px solid #fecaca; text-decoration: line-through; text-decoration-color: rgba(185,28,28,.4); }
+
+  /* Aplicaciones */
+  .movil { width: 230px; margin-inline: auto; background: #fff; border-radius: 32px; border: 8px solid var(--noche); overflow: hidden; }
+  .movil__cab { background: #075e54; color: #fff; padding: 14px; display: flex; gap: 10px; align-items: center; font-size: .9rem; }
+  .movil__cab img { width: 38px; height: 38px; border-radius: 50%; background: #fff; }
+  .movil__chat { background: #efeae2; padding: 14px; display: flex; flex-direction: column; gap: 8px; min-height: 180px; font-size: .82rem; }
+  .movil__msg { background: #fff; border-radius: 10px; padding: 8px 10px; max-width: 85%; }
+  .movil__msg--yo { background: #d9fdd3; align-self: flex-end; }
+  .tarjeta-visita { aspect-ratio: 85 / 55; border-radius: 12px; box-shadow: 0 20px 40px -20px rgba(15,23,42,.35); padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+  .tarjeta-visita--frente { background: #fff; }
+  .tarjeta-visita--dorso { background: linear-gradient(135deg, var(--turquesa-claro), var(--turquesa-oscuro)); display: grid; place-items: center; }
+  .tarjeta-visita small { display: block; color: var(--pizarra); font-size: .72rem; line-height: 1.5; }
+  .furgo { position: relative; height: 170px; background: #fff; border-radius: 22px 70px 18px 18px; border: 1px solid var(--borde); overflow: hidden; display: flex; align-items: center; padding: 0 28px; }
+  .furgo::before { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 30%; background: var(--noche); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%); }
+  .furgo::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: linear-gradient(90deg, var(--turquesa-oscuro), var(--turquesa), var(--lima)); }
+  .furgo img { width: 62%; height: auto; position: relative; z-index: 1; }
+  .camiseta { height: 230px; display: grid; place-items: center; background: var(--turquesa-oscuro); border-radius: 60px 60px 18px 18px; clip-path: polygon(22% 0, 78% 0, 100% 18%, 88% 34%, 82% 30%, 82% 100%, 18% 100%, 18% 30%, 12% 34%, 0 18%); }
+  .camiseta img { width: 64px; margin-top: 10px; }
+
+  footer { padding: 40px 0 60px; color: var(--pizarra); font-size: .9rem; }
+  @media (max-width: 640px) { .voz { grid-template-columns: 1fr; } section { padding: 52px 0; } }
+</style>
+</head>
+<body>
+
+<section class="portada">
+  <div>
+    <img src="../../../assets/marca/logo-vertical.svg" alt="TUservicio, limpieza profesional">
+    <p class="subt">Manual de marca · 2026</p>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">01 · Idea</span>
+    <h2>Tu casa, en el centro</h2>
+    <p>El nombre pone el foco en el cliente: <strong>tu</strong> casa, <strong>tu</strong> oficina, <strong>tu</strong> tiempo. El símbolo lo cuenta sin palabras: una casa cuyo cuerpo es una «U», la segunda letra de «TU». El destello lima es el «recién limpio».</p>
+    <div class="rejilla" style="margin-top:32px">
+      <div class="tarjeta">
+        <div class="lienzo">
+          <div class="construccion">
+            <img src="../../../assets/marca/simbolo.svg" alt="">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <g fill="none" stroke="#a3e635" stroke-width=".35" stroke-dasharray="1 1">
+                <line x1="32" y1="0" x2="32" y2="64"/><line x1="0" y1="31" x2="64" y2="31"/>
+                <line x1="21" y1="0" x2="21" y2="64"/><line x1="43" y1="0" x2="43" y2="64"/>
+                <circle cx="32" cy="39" r="11"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <p class="pie">Construcción: tejado a 45° aprox., «U» de radio 11 centrada bajo el tejado, trazo uniforme con remates redondos, caja de 64 con esquinas de 16.</p>
+      </div>
+      <div class="tarjeta">
+        <h3>Cercana</h3><p class="pie">Tuteamos, hablamos claro y sin jerga.</p>
+        <h3>Fresca</h3><p class="pie">Turquesa y lima: limpio, ecológico, luminoso.</p>
+        <h3>De confianza</h3><p class="pie">Precio cerrado, mismo equipo, garantía de repaso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">02 · Logo</span>
+    <h2>Versiones del logo</h2>
+    <p>Usa siempre los archivos de <code>assets/marca/</code>. El nombre está convertido en trazados con la fuente Outfit, así que se ve igual en cualquier equipo.</p>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="lienzo"><img src="../../../assets/marca/logo-horizontal.svg" alt="" style="width:100%;max-width:300px"></div><p class="pie"><strong>Principal.</strong> <code>logo-horizontal.svg</code></p></div>
+      <div class="tarjeta tarjeta--oscura"><div class="lienzo"><img src="../../../assets/marca/logo-horizontal-blanco.svg" alt="" style="width:100%;max-width:300px"></div><p class="pie"><strong>Fondos oscuros.</strong> <code>logo-horizontal-blanco.svg</code></p></div>
+      <div class="tarjeta"><div class="lienzo"><img src="../../../assets/marca/logo-vertical.svg" alt="" style="height:170px"></div><p class="pie"><strong>Vertical.</strong> <code>logo-vertical.svg</code></p></div>
+      <div class="tarjeta"><div class="lienzo"><img src="../../../assets/marca/simbolo.svg" alt="" style="height:120px"></div><p class="pie"><strong>Símbolo.</strong> Perfiles y apps. <code>simbolo.svg</code></p></div>
+      <div class="tarjeta"><div class="lienzo"><img src="../../../assets/marca/simbolo-mono.svg" alt="" style="height:120px"></div><p class="pie"><strong>Un color.</strong> Sellos, bordados, vinilos. <code>simbolo-mono.svg</code></p></div>
+      <div class="tarjeta tarjeta--turquesa"><div class="lienzo"><img src="../../../assets/marca/simbolo-blanco.svg" alt="" style="height:120px"></div><p class="pie"><strong>Sobre color.</strong> <code>simbolo-blanco.svg</code></p></div>
+    </div>
+
+    <h3 style="margin-top:48px">Zona de respeto y tamaño mínimo</h3>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="lienzo"><div class="respeto"><img src="../../../assets/marca/logo-horizontal.svg" alt=""></div></div><p class="pie">Margen libre alrededor: la mitad del alto del símbolo.</p></div>
+      <div class="tarjeta"><div class="lienzo" style="gap:18px;grid-auto-flow:column;align-items:end">
+        <img src="../../../assets/marca/favicon.svg" alt="" style="height:16px"><img src="../../../assets/marca/favicon.svg" alt="" style="height:24px"><img src="../../../assets/marca/simbolo.svg" alt="" style="height:32px"><img src="../../../assets/marca/logo-horizontal.svg" alt="" style="width:120px">
+      </div><p class="pie">Símbolo ≥ 24 px (por debajo, <code>favicon.svg</code>, sin destello y con trazo más grueso). Logo horizontal ≥ 120 px de ancho o 30 mm impreso.</p></div>
+    </div>
+
+    <h3 style="margin-top:48px">Usos incorrectos</h3>
+    <div class="rejilla">
+      <div class="tarjeta mal"><div class="lienzo"><img src="../../../assets/marca/logo-horizontal.svg" alt="" style="transform:scaleX(1.5)"></div><p class="pie">Deformar.</p></div>
+      <div class="tarjeta mal"><div class="lienzo"><img src="../../../assets/marca/logo-horizontal.svg" alt="" style="filter:hue-rotate(160deg)"></div><p class="pie">Cambiar colores.</p></div>
+      <div class="tarjeta mal tarjeta--turquesa"><div class="lienzo"><img src="../../../assets/marca/logo-horizontal.svg" alt=""></div><p class="pie">Logo a color sobre turquesa.</p></div>
+      <div class="tarjeta mal"><div class="lienzo"><span style="font-family:Georgia,serif;font-size:1.8rem;font-style:italic">Tu Servicio</span></div><p class="pie">Reescribir el nombre con otra fuente o con otra escritura.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">03 · Color</span>
+    <h2>Paleta</h2>
+    <div class="rejilla" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+      <div class="muestra"><div class="muestra__color" style="background:#0f766e;color:#fff">Aa</div><div class="muestra__datos"><strong>Turquesa oscuro</strong>#0f766e · 15 118 110<br>Texto, enlaces, botones</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#0ea5a4;color:#fff">Aa</div><div class="muestra__datos"><strong>Turquesa</strong>#0ea5a4 · 14 165 164<br>Superficies e iconos</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#14b8a6"></div><div class="muestra__datos"><strong>Turquesa claro</strong>#14b8a6 · 20 184 166<br>Inicio del degradado</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#5eead4;color:#0f172a">Aa</div><div class="muestra__datos"><strong>Menta</strong>#5eead4 · 94 234 212<br>Brillos, «TU» en oscuro</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#a3e635;color:#0f172a">Aa</div><div class="muestra__datos"><strong>Lima</strong>#a3e635 · 163 230 53<br>Acento, solo detalles</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#0f172a;color:#fff">Aa</div><div class="muestra__datos"><strong>Tinta</strong>#0f172a · 15 23 42<br>Texto principal</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#475569;color:#fff">Aa</div><div class="muestra__datos"><strong>Gris pizarra</strong>#475569 · 71 85 105<br>Texto secundario</div></div>
+      <div class="muestra"><div class="muestra__color" style="background:#0b1b2b;color:#5eead4">Aa</div><div class="muestra__datos"><strong>Noche</strong>#0b1b2b · 11 27 43<br>Fondos oscuros</div></div>
+    </div>
+    <div class="barra" aria-label="Proporción de uso del color">
+      <span style="flex:60;background:#f8fafc;border:1px solid var(--borde);border-radius:999px 0 0 999px"></span><span style="flex:25;background:#0f172a"></span><span style="flex:12;background:linear-gradient(90deg,#14b8a6,#0f766e)"></span><span style="flex:3;background:#a3e635"></span>
+    </div>
+    <p class="pie" style="margin-top:10px">Proporción orientativa: 60 % blancos · 25 % tinta · 12 % turquesas · 3 % lima. Degradado de marca: <code>linear-gradient(135deg, #14b8a6, #0f766e)</code>.</p>
+
+    <h3 style="margin-top:40px">Contraste para texto</h3>
+    <table>
+      <thead><tr><th>Combinación</th><th>Contraste</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip" style="background:#0f766e;color:#fff">Blanco sobre turquesa oscuro</span></td><td>5,5 : 1</td><td class="ok">Cualquier texto</td></tr>
+        <tr><td><span class="chip" style="background:#fff;color:#0f766e;border:1px solid var(--borde)">Turquesa oscuro sobre blanco</span></td><td>5,5 : 1</td><td class="ok">Cualquier texto</td></tr>
+        <tr><td><span class="chip" style="background:#fff;color:#475569;border:1px solid var(--borde)">Gris pizarra sobre blanco</span></td><td>7,6 : 1</td><td class="ok">Cualquier texto</td></tr>
+        <tr><td><span class="chip" style="background:#0b1b2b;color:#5eead4">Menta sobre noche</span></td><td>11,8 : 1</td><td class="ok">Cualquier texto</td></tr>
+        <tr><td><span class="chip" style="background:#a3e635;color:#0f172a">Tinta sobre lima</span></td><td>11,8 : 1</td><td class="ok">Etiquetas e insignias</td></tr>
+        <tr><td><span class="chip" style="background:#0ea5a4;color:#fff">Blanco sobre turquesa</span></td><td>3,0 : 1</td><td class="medio">Solo texto grande o iconos</td></tr>
+        <tr><td><span class="chip" style="background:#fff;color:#a3e635;border:1px solid var(--borde)">Lima sobre blanco</span></td><td>1,5 : 1</td><td class="ko">Nunca para texto</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">04 · Tipografía</span>
+    <h2>Dos familias, ambas de Google Fonts</h2>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="tipo-grande">Aa</div><h3>Outfit</h3><p class="alfabeto">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789 €</p><p class="pie">Logo, titulares, cifras y botones. 800 · 700 · 600 · 500.</p></div>
+      <div class="tarjeta inter"><div class="tipo-grande">Aa</div><h3 style="font-family:Inter">Inter</h3><p class="alfabeto">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ abcdefghijklmnñopqrstuvwxyz 0123456789 €</p><p class="pie">Texto corrido, formularios y letra pequeña. 400 · 500 · 600.</p></div>
+    </div>
+    <div class="tarjeta jerarquia" style="margin-top:20px">
+      <span class="num" style="margin:0">Lema · Outfit 500 · mayúsculas · +0,18 em</span>
+      <h1 style="font-size:clamp(2rem,5vw,3.4rem);font-weight:800">Tu piso, como nuevo.</h1>
+      <h3 style="font-size:1.4rem">Limpieza de hogares y oficinas en Madrid</h3>
+      <p style="font-family:Inter;color:var(--pizarra)">Precio cerrado antes de empezar, productos ecológicos y el mismo equipo en cada visita. Si algo no queda bien, volvemos gratis en 48 horas.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">05 · Elementos</span>
+    <h2>Formas, botones y destello</h2>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="lienzo" style="gap:14px"><span class="btn btn--primario">Reservar por WhatsApp</span><span class="btn btn--fantasma">Calcular precio</span></div><p class="pie">Botones en píldora. El principal con el degradado de marca y texto de 18 px o más en Outfit 600.</p></div>
+      <div class="tarjeta"><div class="lienzo" style="gap:12px;grid-auto-flow:column"><span class="chip etiqueta">Más pedido</span><span class="chip" style="background:#eefbfa;color:#0f766e">Desde 59 €</span></div><p class="pie">Etiquetas en lima con texto tinta, o en menta muy suave con turquesa oscuro.</p></div>
+      <div class="tarjeta"><div class="lienzo"><svg width="90" height="90" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l1.6 4.4L14 6l-4.4 1.6L8 12 6.4 7.6 2 6l4.4-1.6z" fill="#a3e635"/></svg></div><p class="pie">El destello de cuatro puntas: uno por composición, en esquinas, precios o el «después».</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">06 · Voz</span>
+    <h2>Hablamos como un vecino de confianza</h2>
+    <p>Tuteamos, vamos al grano (precio, tiempo, qué incluye) y prometemos solo lo que cumplimos. Algún emoji en WhatsApp y en la web, nunca en facturas.</p>
+    <div class="voz">
+      <div><h3 class="ok">Así sí</h3>
+        <p class="burbuja burbuja--si">Tu piso, como nuevo en 3 horas. Precio cerrado antes de empezar.</p>
+        <p class="burbuja burbuja--si">¡Listo! Mañana a las 10:00 llega Marta con todo el material. 🧽</p>
+      </div>
+      <div><h3 class="ko">Así no</h3>
+        <p class="burbuja burbuja--no">Ofrecemos soluciones integrales de higienización de alta calidad.</p>
+        <p class="burbuja burbuja--no">¡¡El MEJOR servicio de limpieza del mundo!! ✨✨🔥</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="envoltura">
+    <span class="num">07 · Aplicaciones</span>
+    <h2>La marca en el día a día</h2>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="movil">
+        <div class="movil__cab"><img src="../../../assets/marca/simbolo.svg" alt=""><div><strong>TUservicio · Limpieza Madrid</strong><br><small>en línea</small></div></div>
+        <div class="movil__chat"><span class="movil__msg movil__msg--yo">Hola, ¿precio para un piso de 80 m²?</span><span class="movil__msg">¡Hola! 👋 Para 80 m² son 89 €, unas 3 h. ¿Te va bien el jueves?</span></div>
+      </div><p class="pie">Perfil de WhatsApp Business: <code>simbolo-1024.png</code>.</p></div>
+      <div class="tarjeta" style="gap:18px">
+        <div class="tarjeta-visita tarjeta-visita--frente"><img src="../../../assets/marca/logo-horizontal.svg" alt="" style="width:62%"><div><strong style="font-family:Outfit">Equipo TUservicio</strong><small>649 671 247 · infotuservicioes@gmail.com<br>tuservicioes.com</small></div></div>
+        <div class="tarjeta-visita tarjeta-visita--dorso"><img src="../../../assets/marca/simbolo-blanco.svg" alt="" style="width:64px"></div>
+        <p class="pie">Tarjeta de visita 85 × 55 mm.</p>
+      </div>
+      <div class="tarjeta" style="gap:18px">
+        <div class="furgo"><img src="../../../assets/marca/logo-horizontal.svg" alt=""></div>
+        <div class="camiseta"><img src="../../../assets/marca/simbolo-blanco.svg" alt=""></div>
+        <p class="pie">Vinilo de furgoneta y uniforme turquesa oscuro con símbolo blanco.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="envoltura">
+  Manual de marca de TUservicio. Fuente de los textos: <code>references/marca.md</code>. Archivos: <code>assets/marca/</code>. Para regenerarlos: <code>scripts/generar_marca.py</code> y <code>scripts/exportar_png.py</code>.
+</footer>
+</body>
+</html>

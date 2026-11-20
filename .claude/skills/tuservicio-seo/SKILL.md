@@ -28,7 +28,7 @@ Esta skill sirve para tres tipos de trabajo, que se combinan a menudo:
 
   Así la web, los datos estructurados y el chat dicen siempre lo mismo, que es lo que Google exige (información incoherente entre la web, la ficha de Google y los directorios penaliza). El horario del JSON-LD está en la constante `HORARIO` del script.
 - Las opiniones se quedan solo en JavaScript a propósito: son de ejemplo hasta que el usuario las sustituya (ver "Datos reales").
-- La imagen para compartir (`assets/og-tuservicio.jpg`, 1200×630) y el logo (`assets/logo-512.png`) se generan desde `assets/og-tuservicio.html` y `assets/logo-512.html` de esta skill con Chrome sin interfaz. Regénéralos si cambia el lema, el teléfono o los colores (comandos en `references/plantillas.md`, sección 5).
+- La imagen para compartir (`assets/og-tuservicio.jpg`, 1200×630) se genera con Chrome sin interfaz desde `assets/og-tuservicio.html` de esta skill. Regénérala si cambia el lema, el teléfono, el logo o los colores (comandos en `references/plantillas.md`, sección 5). El logo y los iconos (`assets/logo-512.png`, `assets/marca/`) son de la skill `tuservicio-marca`.
 - `vercel.json` tiene `cleanUrls: true`: un archivo `limpieza-fin-de-obra-madrid.html` se sirve como `/limpieza-fin-de-obra-madrid`. Así se crean páginas nuevas sin tocar configuración.
 - El idioma de la web, los textos y los nombres del código están en español. Mantenlo.
 

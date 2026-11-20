@@ -143,7 +143,7 @@ google-chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,
 python3 -c "from PIL import Image; Image.open('/ruta/scratchpad/og.png').convert('RGB').save('assets/og-tuservicio.jpg', quality=85, optimize=True, progressive=True)"
 ```
 
-El logo de 512×512 (`assets/logo-512.png`, usado en el JSON-LD y como icono) sale igual de `logo-512.html`, con `--window-size=512,512` y guardando en PNG.
+El logo de 512×512 (`assets/logo-512.png`, usado en el JSON-LD y como icono) lo genera la skill `tuservicio-marca` con `scripts/exportar_png.py`.
 
 Para una página de servicio, puedes hacer una imagen propia copiando `og-tuservicio.html` y cambiando el texto (por ejemplo `og-fin-de-obra.jpg`).
 
